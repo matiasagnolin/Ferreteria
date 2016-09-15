@@ -2,6 +2,8 @@ package ar.com.model.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+@Entity
 public class SalaryReport implements Serializable{
 	private double basicSalary;
 	private double awards;

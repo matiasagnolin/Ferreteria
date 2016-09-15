@@ -1,6 +1,20 @@
 package ar.com.model.domain;
 
-public class Producto {
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Producto implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int ID_Producto;
 	private String Descripcion_Producto;
 	private int Stock_Producto;
@@ -13,6 +27,27 @@ public class Producto {
 		this.Descripcion_Producto=Descripcion_Producto;
 		this.Stock_Producto=Stock_Producto;
 		this.Precio_Unitario_Producto=Precio_Unitario_Producto;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ID_Producto;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Producto other = (Producto) obj;
+		if (ID_Producto != other.ID_Producto)
+			return false;
+		return true;
 	}
 	
 	public int getID_Producto() {

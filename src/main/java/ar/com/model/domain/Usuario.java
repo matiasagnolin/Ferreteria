@@ -1,18 +1,50 @@
 package ar.com.model.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+@Entity
 public class Usuario {
+	@Id
 	private String Nombre_Usuario;
 	private String Password_Usuario;
 	private int Rol_Usuario;
-	private String DNI_Persona;
+	@OneToOne
+	private Persona DNI_Persona;
 	
 	public Usuario(){}
 
-	public Usuario(String nombre_Usuario, String password_Usuario, int rol_Usuario, String persona) {
+	public Usuario(String nombre_Usuario, String password_Usuario, int rol_Usuario, Persona persona) {
 		this.Nombre_Usuario = nombre_Usuario;
 		this.Password_Usuario = password_Usuario;
 		this.Rol_Usuario = rol_Usuario;
 		this.DNI_Persona = persona;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((Nombre_Usuario == null) ? 0 : Nombre_Usuario.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		if (Nombre_Usuario == null) {
+			if (other.Nombre_Usuario != null)
+				return false;
+		} else if (!Nombre_Usuario.equals(other.Nombre_Usuario))
+			return false;
+		return true;
 	}
 
 	public String getNombre_Usuario() {
@@ -39,11 +71,11 @@ public class Usuario {
 		Rol_Usuario = rol_Usuario;
 	}
 
-	public String getDNI_Persona() {
+	public Persona getDNI_Persona() {
 		return DNI_Persona;
 	}
 
-	public void setDNI_Persona(String dNI_Persona) {
+	public void setDNI_Persona(Persona dNI_Persona) {
 		DNI_Persona = dNI_Persona;
 	}
 	

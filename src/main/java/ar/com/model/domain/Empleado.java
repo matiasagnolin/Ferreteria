@@ -1,5 +1,10 @@
 package ar.com.model.domain;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("E")
 public class Empleado extends Persona{
 	private String ID_Vendedor;
 	public Empleado(){
@@ -14,4 +19,5 @@ public class Empleado extends Persona{
 		super(DNI,nombre, apellido,telefono,email,direccion,fechadenac,usuario);
 		this.ID_Vendedor=ID_Vendedor;
 	}
+	
 }

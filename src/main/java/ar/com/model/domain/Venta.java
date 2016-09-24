@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 
@@ -21,10 +22,13 @@ public class Venta implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int ID_Venta;
-	@OneToMany(cascade=CascadeType.ALL)
+	
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Cliente cliente;
-	@OneToMany(cascade=CascadeType.ALL)
+	
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Empleado vendedor;
+	
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Producto> Productos = new ArrayList <Producto>();
 	private String Fecha;

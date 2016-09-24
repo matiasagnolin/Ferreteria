@@ -21,9 +21,8 @@ public class Producto implements Serializable{
 	private float Precio_Unitario_Producto;
 	
 	public Producto(){}
-	public Producto(int ID_Producto,String Descripcion_Producto ,int Stock_Producto,float Precio_Unitario_Producto)
+	public Producto(String Descripcion_Producto ,int Stock_Producto,float Precio_Unitario_Producto)
 	{
-		this.ID_Producto=ID_Producto;
 		this.Descripcion_Producto=Descripcion_Producto;
 		this.Stock_Producto=Stock_Producto;
 		this.Precio_Unitario_Producto=Precio_Unitario_Producto;

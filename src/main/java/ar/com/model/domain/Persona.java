@@ -2,11 +2,13 @@ package ar.com.model.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
 
 
 @Entity
@@ -22,6 +24,7 @@ public class Persona implements Serializable{
 	private String Email_Persona;
 	private String FechaDeNac_Persona;
 	private String Domicilio_Persona;
+	@OneToOne(cascade=CascadeType.ALL)
 	private Usuario usuario;
 	public Persona(){}
 	

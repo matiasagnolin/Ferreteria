@@ -10,8 +10,8 @@ public class Empleado extends Persona{
 	public Empleado(){
 		super();
 	}
-	
-	public Empleado (String nombre, String apellido,String fechadenac,String direccion,int DNI,String email,String telefono, String ID_Vendedor){
+					
+	public Empleado (int DNI,String nombre, String apellido,String fechadenac,String direccion,String email,String telefono, String ID_Vendedor){
 		super(DNI,nombre, apellido,telefono,email,direccion,fechadenac);
 		this.ID_Vendedor=ID_Vendedor;
 	}

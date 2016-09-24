@@ -11,10 +11,10 @@ public class Cliente extends Persona {
 	{
 		super();
 	}
-	public Cliente (String nombre, String apellido,String fechadenac,String direccion,int DNI,String email,String telefono){
+	public Cliente (int DNI,String nombre, String apellido,String fechadenac,String direccion,String email,String telefono){
 		super(DNI,nombre, apellido,telefono,email,direccion,fechadenac);		
 	}
-	public Cliente (String nombre, String apellido,String fechadenac,String direccion,int DNI,String email,String telefono,Usuario usuario){
+	public Cliente (int DNI,String nombre, String apellido,String fechadenac,String direccion,String email,String telefono,Usuario usuario){
 		super(DNI,nombre, apellido,telefono,email,direccion,fechadenac,usuario);		
 	}
 	

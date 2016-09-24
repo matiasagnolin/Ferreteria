@@ -9,16 +9,15 @@ public class Usuario {
 	private String Nombre_Usuario;
 	private String Password_Usuario;
 	private int Rol_Usuario;
-	@OneToOne
 	private Persona DNI_Persona;
 	
 	public Usuario(){}
 
-	public Usuario(String nombre_Usuario, String password_Usuario, int rol_Usuario, Persona persona) {
+	public Usuario(String nombre_Usuario, String password_Usuario, int rol_Usuario, Persona DNI) {
 		this.Nombre_Usuario = nombre_Usuario;
 		this.Password_Usuario = password_Usuario;
 		this.Rol_Usuario = rol_Usuario;
-		this.DNI_Persona = persona;
+		this.DNI_Persona = DNI;
 	}
 
 	@Override

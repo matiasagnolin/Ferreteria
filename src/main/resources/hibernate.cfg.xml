@@ -3,14 +3,20 @@
  <hibernate-configuration>
     <session-factory>
       <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-      <property name="connection.url">jdbc:mysql://localhost/test</property>
+      <property name="connection.url">jdbc:mysql://localhost/prueba</property>
       <property name="connection.username">root</property>
       <property name="connection.password">root</property>
       <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
      <property name="hibernate.show_sql">true</property>
 
-     <mapping resource="ar.com.hbm.xml"/>
-     
+     <property name="hibernate.hbm2ddl.auto">update</property>
+     <mapping class="ar.com.model.domain.Campania"></mapping>
+     <mapping class="ar.com.model.domain.Cliente"></mapping>
+     <mapping class="ar.com.model.domain.Empleado"></mapping>
+     <mapping class="ar.com.model.domain.Persona"></mapping>
+     <mapping class="ar.com.model.domain.Producto"></mapping>
+     <mapping class="ar.com.model.domain.Usuario"></mapping>
+     <mapping class="ar.com.model.domain.Venta"></mapping>
 
    </session-factory>
  </hibernate-configuration>

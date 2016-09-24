@@ -1,28 +1,35 @@
 package ar.com.DataLayer.data;
 
+import java.io.File;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 public class SaveDataLayerImple<T> implements SaveDataLayer<T> {
-
+	SessionFactory sessionFactory;
 	@Override
 	public void save(T t) {
-		SessionFactory sessionFactory = new Configuration().configure()
+		sessionFactory = new Configuration().configure()
 				.buildSessionFactory();
 		Session session = sessionFactory.openSession();
-		Transaction tx = session.getTransaction();
+		//Transaction tx = session.getTransaction();
 		try {
-			tx.begin();
+			//tx.begin();
+			session.beginTransaction();
 			session.save(t);
-			tx.commit();
+			session.getTransaction().commit();
+			session.close();
+			//tx.commit();
 		} catch (Exception e) {
-			tx.rollback();
+			//tx.rollback();
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
+
 	}
+	
 
 }

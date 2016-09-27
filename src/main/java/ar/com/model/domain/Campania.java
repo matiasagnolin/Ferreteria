@@ -19,7 +19,33 @@ public class Campania implements Serializable{
 	private String FechaFin;
 	private Producto producto;
 	private String nombre;
+	private Comision comision;
+	private boolean Is_Active;
 	
+	public int getIdCampania() {
+		return IdCampania;
+	}
+
+	public void setIdCampania(int idCampania) {
+		IdCampania = idCampania;
+	}
+
+	public Comision getComision() {
+		return comision;
+	}
+
+	public void setComision(Comision comision) {
+		this.comision = comision;
+	}
+
+	public boolean isIs_Active() {
+		return Is_Active;
+	}
+
+	public void setIs_Active(boolean is_Active) {
+		Is_Active = is_Active;
+	}
+
 	public Campania(){}
 	
 	public Campania(String FechaInicio,String FechaFin,Producto producto,String nombre)

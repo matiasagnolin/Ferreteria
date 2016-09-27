@@ -24,7 +24,7 @@ public class Venta implements Serializable{
 	private int ID_Venta;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
-	private Cliente cliente;
+	private Usuario cliente;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
 	private Empleado vendedor;
@@ -35,7 +35,7 @@ public class Venta implements Serializable{
 
 	
 	public Venta(){}
-	public Venta (int ID_Venta,Cliente cliente,Empleado vendedor,Producto Productos,String Fecha)
+	public Venta (int ID_Venta,Usuario cliente,Empleado vendedor,Producto Productos,String Fecha)
 	{
 		this.ID_Venta=ID_Venta;
 		this.cliente=cliente;
@@ -70,10 +70,10 @@ public class Venta implements Serializable{
 	public void setID_Venta(int iD_Venta) {
 		ID_Venta = iD_Venta;
 	}
-	public Cliente getCliente() {
+	public Usuario getCliente() {
 		return cliente;
 	}
-	public void setCliente(Cliente cliente) {
+	public void setCliente(Usuario cliente) {
 		this.cliente = cliente;
 	}
 	public Empleado getVendedor() {

@@ -11,11 +11,11 @@ public class Empleado extends Persona{
 		super();
 	}
 					
-	public Empleado (int DNI,String nombre, String apellido,String fechadenac,String direccion,String email,String telefono, String ID_Vendedor){
+	public Empleado (String DNI,String nombre, String apellido,String fechadenac,String direccion,String email,String telefono, String ID_Vendedor){
 		super(DNI,nombre, apellido,telefono,email,direccion,fechadenac);
 		this.ID_Vendedor=ID_Vendedor;
 	}
-	public Empleado (String nombre, String apellido,String fechadenac,String direccion,int DNI,String email,String telefono, String ID_Vendedor,Usuario usuario){
+	public Empleado (String nombre, String apellido,String fechadenac,String direccion,String DNI,String email,String telefono, String ID_Vendedor,Usuario usuario){
 		super(DNI,nombre, apellido,telefono,email,direccion,fechadenac,usuario);
 		this.ID_Vendedor=ID_Vendedor;
 	}

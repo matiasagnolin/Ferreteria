@@ -20,7 +20,6 @@ public class SaveDataLayerImple<T> implements SaveDataLayer<T> {
 			session.beginTransaction();
 			session.save(t);
 			session.getTransaction().commit();
-			session.close();
 			//tx.commit();
 		} catch (Exception e) {
 			//tx.rollback();

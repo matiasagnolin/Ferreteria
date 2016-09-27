@@ -17,7 +17,7 @@ import javax.persistence.OneToOne;
 public class Persona implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
-	private int DNI_Persona;
+	private String DNI_Persona;
 	private String Nombre_Persona;
 	private String Apellido_Persona;
 	private String Telefono_Persona;
@@ -28,7 +28,7 @@ public class Persona implements Serializable{
 	private Usuario usuario;
 	public Persona(){}
 	
-	public Persona(int DNI_Persona, String nombre_Persona, String apellido_Persona, String telefono_Persona,
+	public Persona(String DNI_Persona, String nombre_Persona, String apellido_Persona, String telefono_Persona,
 			String email_Persona, String fechaDeNac_Persona, String domicilio_Persona)  {
 		
 			this.DNI_Persona = DNI_Persona;
@@ -39,7 +39,7 @@ public class Persona implements Serializable{
 			this.FechaDeNac_Persona = fechaDeNac_Persona;
 			this.Domicilio_Persona = domicilio_Persona;		
 	}
-	public Persona(int DNI_Persona, String nombre_Persona, String apellido_Persona, String telefono_Persona,
+	public Persona(String DNI_Persona, String nombre_Persona, String apellido_Persona, String telefono_Persona,
 			String email_Persona, String fechaDeNac_Persona, String domicilio_Persona,Usuario usuario)  {
 		
 			this.DNI_Persona = DNI_Persona;
@@ -56,7 +56,7 @@ public class Persona implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + DNI_Persona;
+		result = prime * result + Integer.parseInt(DNI_Persona);
 		return result;
 	}
 
@@ -74,11 +74,11 @@ public class Persona implements Serializable{
 		return true;
 	}
 
-	public int getDNI_Persona() {
+	public String getDNI_Persona() {
 		return DNI_Persona;
 	}
 
-	public void setDNI_Persona(int dNI_Persona) {
+	public void setDNI_Persona(String dNI_Persona) {
 		DNI_Persona = dNI_Persona;
 	}
 
@@ -138,6 +138,10 @@ public class Persona implements Serializable{
 		this.usuario = usuario;
 	}
 	
-	
+	public String toString()
+	{
+		return  String.valueOf(DNI_Persona);
+		
+	}
 	
 }

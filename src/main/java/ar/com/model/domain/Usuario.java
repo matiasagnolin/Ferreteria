@@ -7,9 +7,11 @@ import javax.persistence.OneToOne;
 public class Usuario {
 	@Id
 	private String Nombre_Usuario;
+	@OneToOne
+	private Persona Persona;
 	private String Password_Usuario;
 	private int Rol_Usuario;
-	private Persona DNI_Persona;
+	
 	
 	public Usuario(){}
 
@@ -17,7 +19,7 @@ public class Usuario {
 		this.Nombre_Usuario = nombre_Usuario;
 		this.Password_Usuario = password_Usuario;
 		this.Rol_Usuario = rol_Usuario;
-		this.DNI_Persona = DNI;
+		this.Persona = DNI;
 	}
 
 	@Override
@@ -71,11 +73,11 @@ public class Usuario {
 	}
 
 	public Persona getDNI_Persona() {
-		return DNI_Persona;
+		return Persona;
 	}
 
 	public void setDNI_Persona(Persona dNI_Persona) {
-		DNI_Persona = dNI_Persona;
+		Persona = dNI_Persona;
 	}
 	
 }

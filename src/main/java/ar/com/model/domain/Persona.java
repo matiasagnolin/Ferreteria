@@ -3,29 +3,38 @@ package ar.com.model.domain;
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
-@DiscriminatorColumn(name="Tipo")
 public class Persona implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	private String DNI_Persona;
+	@Column(name="Nombre_Persona")
 	private String Nombre_Persona;
+	@Column(name="Apellido_Persona")
 	private String Apellido_Persona;
+	@Column(name="Telefono_Persona")
 	private String Telefono_Persona;
+	@Column(name="Email_Persona")
 	private String Email_Persona;
+	@Column(name="FechaDeNac_Persona")
 	private String FechaDeNac_Persona;
+	@Column(name="Domicilio_Persona")
 	private String Domicilio_Persona;
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade= CascadeType.ALL)
+	//@JoinColumn(name="Nombre_Usuario")
 	private Usuario usuario;
+	
 	public Persona(){}
 	
 	public Persona(String DNI_Persona, String nombre_Persona, String apellido_Persona, String telefono_Persona,
@@ -50,6 +59,10 @@ public class Persona implements Serializable{
 			this.FechaDeNac_Persona = fechaDeNac_Persona;
 			this.Domicilio_Persona = domicilio_Persona;		
 			this.usuario=usuario;
+	}
+	public Persona(String DNI_Persona)  {
+		
+			this.DNI_Persona = DNI_Persona;	
 	}
 
 	@Override
@@ -130,6 +143,8 @@ public class Persona implements Serializable{
 		Domicilio_Persona = domicilio_Persona;
 	}
 
+
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -137,11 +152,13 @@ public class Persona implements Serializable{
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
-	public String toString()
-	{
-		return  String.valueOf(DNI_Persona);
-		
+
+	@Override
+	public String toString() {
+		return "Persona [DNI_Persona=" + DNI_Persona + ", usuario=" + usuario
+				+ "]";
 	}
+
+
 	
 }

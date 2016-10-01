@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 @Entity
 public class SalaryReport implements Serializable{
 	private float SalarioBasico;
-	private Empleado empledo;
+	private Usuario empledo;
 	private String DiaGeneracion;
 	private int CantVentas;
 	private List<Campania> Premios;
@@ -18,9 +18,5 @@ public class SalaryReport implements Serializable{
 	public SalaryReport() {
 		// TODO Auto-generated constructor stub
 	}
-	public SalaryReport(Empleado empleado){
-		
-		
-		
-	}
+	
 }

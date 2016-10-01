@@ -1,11 +1,14 @@
 package ar.com.model.domain;
 
 import java.io.Serializable;
-
+import ar.com.model.domain.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Producto implements Serializable{
@@ -16,16 +19,42 @@ public class Producto implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int ID_Producto;
+	@Column(name="Descripcion_Producto")
 	private String Descripcion_Producto;
+	@Column(name="Stock_Producto")
 	private int Stock_Producto;
+	@Column(name="Precio_Unitario_Producto")
 	private float Precio_Unitario_Producto;
+	@OneToOne(cascade= CascadeType.ALL)
+	private Comision comision;
 	
+	public Comision getComision() {
+		return comision;
+	}
+	public void setComision(Comision comision) {
+		this.comision = comision;
+	}
+	@Override
+	public String toString() {
+		return "Producto [ID_Producto=" + ID_Producto
+				+ ", Descripcion_Producto=" + Descripcion_Producto
+				+ ", Stock_Producto=" + Stock_Producto
+				+ ", Precio_Unitario_Producto=" + Precio_Unitario_Producto
+				+ "]";
+	}
 	public Producto(){}
 	public Producto(String Descripcion_Producto ,int Stock_Producto,float Precio_Unitario_Producto)
 	{
 		this.Descripcion_Producto=Descripcion_Producto;
 		this.Stock_Producto=Stock_Producto;
 		this.Precio_Unitario_Producto=Precio_Unitario_Producto;
+	}
+	public Producto(String Descripcion_Producto ,int Stock_Producto,float Precio_Unitario_Producto,Comision comision)
+	{
+		this.Descripcion_Producto=Descripcion_Producto;
+		this.Stock_Producto=Stock_Producto;
+		this.Precio_Unitario_Producto=Precio_Unitario_Producto;
+		this.comision=comision;
 	}
 	
 	@Override

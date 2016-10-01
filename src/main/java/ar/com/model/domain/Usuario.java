@@ -1,27 +1,41 @@
 package ar.com.model.domain;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 @Entity
+@Table(name="usuarios")
 public class Usuario {
 	@Id
 	private String Nombre_Usuario;
-	@OneToOne
+	@OneToOne(cascade= CascadeType.ALL)//(mappedBy="usuario",fetch = FetchType.LAZY)
+	//@JoinColumn(name="DNI_Persona")
 	private Persona Persona;
+	@Column(name="Password_Usuario")
 	private String Password_Usuario;
-	private int Rol_Usuario;
+	@Column(name="role_Usuario")
+	private int Role_Usuario;
 	
 	
 	public Usuario(){}
 
-	public Usuario(String nombre_Usuario, String password_Usuario, int rol_Usuario, Persona DNI) {
+	public Usuario(String nombre_Usuario, String password_Usuario, int role_Usuario, Persona DNI) {
 		this.Nombre_Usuario = nombre_Usuario;
 		this.Password_Usuario = password_Usuario;
-		this.Rol_Usuario = rol_Usuario;
+		this.Role_Usuario = role_Usuario;
 		this.Persona = DNI;
 	}
+	public Usuario(String nombre_Usuario, String password_Usuario, int role_Usuario) {
+		this.Nombre_Usuario = nombre_Usuario;
+		this.Password_Usuario = password_Usuario;
+		this.Role_Usuario = role_Usuario;
 
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -64,20 +78,26 @@ public class Usuario {
 		Password_Usuario = password_Usuario;
 	}
 
-	public int getRol_Usuario() {
-		return Rol_Usuario;
-	}
+	
 
-	public void setRol_Usuario(int rol_Usuario) {
-		Rol_Usuario = rol_Usuario;
-	}
-
-	public Persona getDNI_Persona() {
+	public Persona getPersona() {
 		return Persona;
 	}
 
-	public void setDNI_Persona(Persona dNI_Persona) {
-		Persona = dNI_Persona;
+	public void setPersona(Persona persona) {
+		Persona = persona;
 	}
+
+	public void setRole_Usuario(int role_Usuario) {
+		Role_Usuario = role_Usuario;
+	}
+
+	@Override
+	public String toString() {
+		return "Usuario [Nombre_Usuario=" + Nombre_Usuario + ", Persona="
+				+ Persona + "]";
+	}
+
+
 	
 }

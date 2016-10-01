@@ -5,12 +5,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 
 @Entity
@@ -23,25 +29,45 @@ public class Venta implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int ID_Venta;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	private Usuario cliente;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
-	private Empleado vendedor;
+	@ManyToOne
+	private Usuario vendedor;
+	@OneToMany
+	private List<DetalleVenta> detalleventa;
 	
-	@OneToMany(cascade=CascadeType.ALL)
-	private List<Producto> Productos = new ArrayList <Producto>();
+	@Column(name="Fecha_Venta")
 	private String Fecha;
 
 	
+	public Usuario getVendedor() {
+		return vendedor;
+	}
+	public void setVendedor(Usuario vendedor) {
+		this.vendedor = vendedor;
+	}
+	public List<DetalleVenta> getDetalleventa() {
+		return detalleventa;
+	}
+	public void setDetalleventa(List<DetalleVenta> detalleventa) {
+		this.detalleventa = detalleventa;
+	}
 	public Venta(){}
-	public Venta (int ID_Venta,Usuario cliente,Empleado vendedor,Producto Productos,String Fecha)
+	public Venta (Usuario cliente,Usuario vendedor,String Fecha)
 	{
-		this.ID_Venta=ID_Venta;
 		this.cliente=cliente;
 		this.vendedor=vendedor;
-		this.Productos=(List<Producto>) Productos;
 		this.Fecha=Fecha;
+	}
+	
+	public Venta (Usuario cliente,Usuario vendedor,String Fecha,ArrayList<DetalleVenta> detalle)
+	{
+		
+		this.cliente=cliente;
+		this.vendedor=vendedor;
+		this.Fecha=Fecha;
+		this.detalleventa=detalle;
 	}
 	
 	@Override
@@ -76,23 +102,17 @@ public class Venta implements Serializable{
 	public void setCliente(Usuario cliente) {
 		this.cliente = cliente;
 	}
-	public Empleado getVendedor() {
-		return vendedor;
-	}
-	public void setVendedor(Empleado vendedor) {
-		this.vendedor = vendedor;
-	}
-	public List<Producto> getProductos() {
-		return Productos;
-	}
-	public void setProductos(List<Producto> productos) {
-		Productos = productos;
-	}
+	
+	
 	public String getFecha() {
 		return Fecha;
 	}
 	public void setFecha(String fecha) {
 		Fecha = fecha;
 	}
-	
+	@Override
+	public String toString() {
+		return "Venta [ID_Venta=" + ID_Venta + ", cliente=" + cliente
+				+ ", vendedor=" + vendedor + ", Productos=" + "]";
+	}
 }

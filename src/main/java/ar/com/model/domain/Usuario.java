@@ -94,8 +94,7 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Usuario [Nombre_Usuario=" + Nombre_Usuario + ", Persona="
-				+ Persona + "]";
+		return "Usuario Nombre_Usuario=" + Nombre_Usuario ;
 	}
 
 

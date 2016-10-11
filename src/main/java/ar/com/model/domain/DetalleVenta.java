@@ -13,7 +13,7 @@ public class DetalleVenta {
 	@javax.persistence.Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int Id;
-	@ManyToOne
+	@ManyToOne(cascade= CascadeType.ALL)
 	private Venta venta;
 	@OneToOne
 	private Producto producto;

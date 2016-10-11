@@ -34,7 +34,7 @@ public class Venta implements Serializable{
 	
 	@ManyToOne
 	private Usuario vendedor;
-	@OneToMany
+	@OneToMany(cascade= CascadeType.ALL)
 	private List<DetalleVenta> detalleventa;
 	
 	@Column(name="Fecha_Venta")
@@ -112,7 +112,8 @@ public class Venta implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "Venta [ID_Venta=" + ID_Venta + ", cliente=" + cliente
-				+ ", vendedor=" + vendedor + ", Productos=" + "]";
+		System.out.println( "Venta [ID_Venta=" + ID_Venta + ", cliente=" + cliente
+				+ ", vendedor=" + vendedor );
+		return "";
 	}
 }

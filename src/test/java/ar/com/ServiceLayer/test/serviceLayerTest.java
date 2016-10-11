@@ -33,7 +33,7 @@ public class serviceLayerTest {
 	private Usuario usuario2;
 	private List<Producto> listpr;
 	private Venta vt;
-	private List <DetalleVenta> Detalle;
+	private List <DetalleVenta> Detalle =  new ArrayList<DetalleVenta>();
 	
 	
 	@Before
@@ -57,18 +57,18 @@ public class serviceLayerTest {
 		 listpr.add(producto1);
 		 listpr.add(producto2);
 		 listpr.add(producto3);
-		//vt = new Venta(usuario1,usuario2 ,"20160101");
-		 //Detalle.add(new DetalleVenta(vt,producto,5,producto.getPrecio_Unitario_Producto()*producto.getComision().getComision(),producto.getPrecio_Unitario_Producto()*5));
-		//vt.setDetalleventa(Detalle);
+		vt = new Venta(usuario1,usuario2 ,"20160101");
+		 Detalle.add(new DetalleVenta(vt,producto,5,producto.getPrecio_Unitario_Producto()*producto.getComision().getComision(),producto.getPrecio_Unitario_Producto()*5));
+		vt.setDetalleventa(Detalle);
+		vt.toString();
+		//System.out.println(vt.toString());
 	} 
 
-
+//
 //	@Test
 //	public void SaveVentaTest(){
 //		list = new ArrayList<Object>();
 //		list.add(vt);
-//		for(DetalleVenta dt : Detalle)
-//		list.add(dt);
 //		req.setList(list);
 //		try 
 //		{
@@ -86,6 +86,9 @@ public class serviceLayerTest {
 		list = new ArrayList<Object>();
 		list.add(cliente1);
 		list.add(vendedor2);
+		for(Producto pr : listpr)
+		list.add(pr);
+		list.add(vt);
 		 req.setList(list);
 		try 
 		{
@@ -98,22 +101,22 @@ public class serviceLayerTest {
 		
 	}
 	
-	@Test
-	public void SaveProductoTest(){
-		list = new ArrayList<Object>();
-		for(Producto pr : listpr)
-		list.add(pr);
-		req.setList(list);
-		try 
-		{
-			service.SaveObject(req);
-		}
-		catch (Exception e) 
-		{
-			Assert.fail(e.getMessage());
-		}
-		
-	}
+//	@Test
+//	public void SaveProductoTest(){
+//		list = new ArrayList<Object>();
+//		for(Producto pr : listpr)
+//		list.add(pr);
+//		req.setList(list);
+//		try 
+//		{
+//			service.SaveObject(req);
+//		}
+//		catch (Exception e) 
+//		{
+//			Assert.fail(e.getMessage());
+//		}
+//		
+//	}
 	
 
 

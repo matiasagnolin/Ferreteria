@@ -23,7 +23,7 @@ import ar.com.model.domain.Usuario;
 import ar.com.model.domain.Venta;
 
 @RunWith(JUnit4.class)
-public class serviceLayerTest {
+public class serviceLayerTest{
 	
 	private ServiceLayer service=new ServiceLayer();
 	private List<Object> list;

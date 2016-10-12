@@ -2,17 +2,20 @@ package ar.com.model.domain;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
 public class DetalleVenta {
-	@javax.persistence.Id
+	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int Id;
+	//@EmbeddedId
 	@ManyToOne(cascade= CascadeType.ALL)
 	private Venta venta;
 	@OneToOne

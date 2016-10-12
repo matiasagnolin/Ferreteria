@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import junit.framework.Assert;
+import ar.com.DataLayer.data.ReadDataLayerImple;
 import ar.com.Request.data.Request;
 import ar.com.ServiceLayer.ServiceLayer;
 
@@ -33,22 +34,26 @@ public class serviceLayerTest {
 	private Usuario usuario2;
 	private List<Producto> listpr;
 	private Venta vt;
-	private List <DetalleVenta> Detalle =  new ArrayList<DetalleVenta>();
+	private List <DetalleVenta> Detalle;
 	
 	
 	@Before
 	public void before(){
+		
 		System.out.println("Before()");
+		
+		req= new Request();
+		Detalle =  new ArrayList<DetalleVenta>();
+		listpr = new ArrayList<Producto>();
+		
 		cliente1 = new Persona("38277272","Matias","Agnolin","47448589","matiasagnolin@gmail.com",
-								"18061994","sobremonte 1735"); 
+							"18061994","sobremonte 1735"); 
 		vendedor2 = new Persona("1111111","pepito","Dummy","11111111","pepito.dummy@gmail.com",
-								"19950902","pepito 1735"); 
+							"19950902","pepito 1735"); 
 		 usuario1 = new Usuario("usuario1", "123", 0,cliente1);
 		 usuario2 = new Usuario("usuario2", "123", 1,vendedor2);
 		 cliente1.setUsuario(usuario1);
-		vendedor2.setUsuario(usuario2);
-		req= new Request();
-		listpr = new ArrayList<Producto>();
+		 vendedor2.setUsuario(usuario2);
 		 Producto producto= new Producto("tornillo",50,125,new Comision(0.10, "Comision normal"));
 		 Producto producto1= new Producto("arandela",500,15,new Comision(0.10, "Comision normal"));
 		 Producto producto2= new Producto("martillo",510,1,new Comision(0.10, "Comision normal"));
@@ -57,32 +62,14 @@ public class serviceLayerTest {
 		 listpr.add(producto1);
 		 listpr.add(producto2);
 		 listpr.add(producto3);
-		vt = new Venta(usuario1,usuario2 ,"20160101");
+		 vt = new Venta(usuario1,usuario2 ,"20160101");
 		 Detalle.add(new DetalleVenta(vt,producto,5,producto.getPrecio_Unitario_Producto()*producto.getComision().getComision(),producto.getPrecio_Unitario_Producto()*5));
-		vt.setDetalleventa(Detalle);
-		vt.toString();
-		//System.out.println(vt.toString());
+		 vt.setDetalleventa(Detalle);		
 	} 
 
-//
-//	@Test
-//	public void SaveVentaTest(){
-//		list = new ArrayList<Object>();
-//		list.add(vt);
-//		req.setList(list);
-//		try 
-//		{
-//		service.SaveObject(req);
-//		}
-//		catch (Exception e) 
-//		{
-//			Assert.fail(e.getMessage());
-//		}
-//		
-//	}
-	
+
 	@Test
-	public void SaveClientTest(){
+	public void SaveTest(){
 		list = new ArrayList<Object>();
 		list.add(cliente1);
 		list.add(vendedor2);
@@ -101,22 +88,22 @@ public class serviceLayerTest {
 		
 	}
 	
-//	@Test
-//	public void SaveProductoTest(){
-//		list = new ArrayList<Object>();
-//		for(Producto pr : listpr)
-//		list.add(pr);
-//		req.setList(list);
-//		try 
-//		{
-//			service.SaveObject(req);
-//		}
-//		catch (Exception e) 
-//		{
-//			Assert.fail(e.getMessage());
-//		}
-//		
-//	}
+	@Test
+	public void ReadTest(){
+		req.setObject(Venta.class);
+		try 
+		{
+			for(Object vt : service.ReadObject(req))
+				System.out.println(vt);
+		}
+		catch (Exception e) 
+		{
+			Assert.fail(e.getMessage());
+		}
+		
+	}
+	
+
 	
 
 

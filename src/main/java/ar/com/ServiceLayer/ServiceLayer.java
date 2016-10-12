@@ -1,5 +1,8 @@
 package ar.com.ServiceLayer;
 
+import java.util.List;
+
+import ar.com.DataLayer.data.ReadDataLayer;
 import ar.com.DataLayer.data.SaveDataLayer;
 import ar.com.DataLayer.data.SaveDataLayerImple;
 import ar.com.Request.data.Request;
@@ -7,16 +10,21 @@ import ar.com.Request.data.Request;
 public class ServiceLayer {
 
 	
-	private SaveDataLayer<Object> data;
+	private SaveDataLayer<Object> savedata;
+	private ReadDataLayer readData;
 	
 	public ServiceLayer(){
-		data=new SaveDataLayerImple<Object>();
+		savedata=new SaveDataLayerImple<Object>();
 	}
 	
 	public void SaveObject(Request req) throws Exception 
 	{
 		for(Object obj : req.getList())
-		data.save(obj);
+			savedata.save(obj);
+	}
+	public List<Object> ReadObject(Request req) throws Exception 
+	{
+		return readData.ReadAll(req.getObject());
 	}
 
 	

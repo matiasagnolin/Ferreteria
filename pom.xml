@@ -5,13 +5,31 @@
   <groupId>ar.com.hibernate</groupId>
   <artifactId>Electronica_Don_Pepe</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
-
+  <packaging>war</packaging>
   <name>Electronica_Don_Pepe</name>
   <url>http://maven.apache.org</url>
+<build>
 
-  <properties>
+	<pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</pluginManagement>
+
+</build>
+    <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <spring-framework.version>3.1.4.RELEASE</spring-framework.version>
+	<spring-data-jpa.version>1.3.0.RELEASE</spring-data-jpa.version>
+	<hibernate.version>3.6.10.Final</hibernate.version>
+	<hibernate-jpa.version>1.0.1.Final</hibernate-jpa.version>
   </properties>
 
   <dependencies>
@@ -35,6 +53,30 @@
     <dependency>
     	<groupId>javassist</groupId>
     	<artifactId>javassist</artifactId>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-beans</artifactId>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-context</artifactId>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-core</artifactId>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-web</artifactId>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-tx</artifactId>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework.data</groupId>
+    	<artifactId>spring-data-jpa</artifactId>
     </dependency>
   </dependencies>
   <dependencyManagement>
@@ -64,6 +106,39 @@
   			<artifactId>javassist</artifactId>
   			<version>3.12.1.GA</version>
   		</dependency>
+  		
+  		<dependency>
+		<groupId>org.springframework.data</groupId>
+		<artifactId>spring-data-jpa</artifactId>
+		<version>${spring-data-jpa.version}</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-core</artifactId>
+		<version>${spring-framework.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-beans</artifactId>
+		<version>${spring-framework.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context</artifactId>
+		<version>${spring-framework.version}</version>
+	</dependency>
+
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-tx</artifactId>
+		<version>${spring-framework.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-web</artifactId>
+		<version>3.0.5.RELEASE</version>
+	</dependency>
   	</dependencies>
   </dependencyManagement>
 </project>

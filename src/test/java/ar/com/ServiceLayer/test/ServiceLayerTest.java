@@ -8,9 +8,11 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import junit.framework.Assert;
-import ar.com.DataLayer.data.ReadDataLayerImple;
+import ar.com.DataLayer.data.DataLayerImple;
 import ar.com.Request.data.Request;
 import ar.com.ServiceLayer.ServiceLayer;
 
@@ -68,40 +70,52 @@ public class ServiceLayerTest{
 	} 
 
 
-	@Test
-	public void SaveTest(){
-		list = new ArrayList<Object>();
-		list.add(cliente1);
-		list.add(vendedor2);
-		for(Producto pr : listpr)
-		list.add(pr);
-		list.add(vt);
-		 req.setList(list);
-		try 
-		{
-			service.SaveObject(req);
-		}
-		catch (Exception e) 
-		{
-			Assert.fail(e.getMessage());
-		}
-		
-	}
+//	@Test
+//	public void SaveTest(){
+//		list = new ArrayList<Object>();
+//		list.add(cliente1);
+//		list.add(vendedor2);
+//		for(Producto pr : listpr)
+//		list.add(pr);
+//		list.add(vt);
+//		 req.setList(list);
+//		try 
+//		{
+//			service.SaveObject(req);
+//		}
+//		catch (Exception e) 
+//		{
+//			Assert.fail(e.getMessage());
+//		}
+//		
+//	}
+//	
+//	@Test
+//	public void ReadTest(){
+//		req.setObject(Venta.class);
+//		try 
+//		{
+//			System.out.println("TRY");
+//			//for(Object vt : service.ReadObject(req))
+//				Assert.assertTrue( service.ReadObject(req).size() >= 0);
+//		}
+//		catch (Exception e) 
+//		{
+//			Assert.fail(e.getMessage());
+//		}
+//		
+//	}
 	
-	@Test
-	public void ReadTest(){
-		req.setObject(Venta.class);
-		try 
-		{
-			for(Object vt : service.ReadObject(req))
-				System.out.println(vt);
-		}
-		catch (Exception e) 
-		{
-			Assert.fail(e.getMessage());
-		}
-		
-	}
+//	@Test
+//	public void getCustomer(){
+//		ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig2.class);
+//		
+//		CustomerRepository customerRepository = context.getBean(CustomerRepository.class);
+//		
+//		List<Customer> customers = customerRepository.getCustomers();
+//		
+//		Assert.assertTrue(customers.size() >= 0);
+//	}
 	
 
 	

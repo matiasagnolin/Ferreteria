@@ -112,8 +112,8 @@ public class Venta implements Serializable{
 	}
 	@Override
 	public String toString() {
-		System.out.println( "Venta [ID_Venta=" + ID_Venta + ", cliente=" + cliente
-				+ ", vendedor=" + vendedor );
-		return "";
+		return "Venta [ID_Venta=" + ID_Venta + ", cliente=" + cliente
+				+ ", vendedor=" + vendedor ;
+		
 	}
 }

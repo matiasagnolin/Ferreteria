@@ -17,12 +17,14 @@ import ar.com.Request.data.Request;
 import ar.com.ServiceLayer.ServiceLayer;
 
 
+import ar.com.config.spring.AppConfig2;
 import ar.com.model.domain.Comision;
 import ar.com.model.domain.DetalleVenta;
 import ar.com.model.domain.Persona;
 import ar.com.model.domain.Producto;
 import ar.com.model.domain.Usuario;
 import ar.com.model.domain.Venta;
+import ar.com.repository.Repository;
 
 @RunWith(JUnit4.class)
 public class ServiceLayerTest{
@@ -106,16 +108,11 @@ public class ServiceLayerTest{
 //		
 //	}
 	
-//	@Test
-//	public void getCustomer(){
-//		ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig2.class);
-//		
-//		CustomerRepository customerRepository = context.getBean(CustomerRepository.class);
-//		
-//		List<Customer> customers = customerRepository.getCustomers();
-//		
-//		Assert.assertTrue(customers.size() >= 0);
-//	}
+	@Test
+	public void getCustomer() throws Exception{
+		req.setObject(cliente1);
+		Assert.assertTrue(service.ReadObject(req).size() >= 0);
+	}
 	
 
 	

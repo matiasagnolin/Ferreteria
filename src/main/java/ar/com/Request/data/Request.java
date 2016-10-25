@@ -8,7 +8,7 @@ public class Request {
 		private List<Object> list = new ArrayList<Object>();
 		
 		public Request(){}
-		private Class object;
+		private Object object;
 		private Serializable id;
 		public List<Object> getList() {
 			return list;
@@ -17,11 +17,11 @@ public class Request {
 		public void setList(List obj) {
 			this.list=obj;
 		}
-		public void setObject(Class object){
+		public void setObject(Object object){
 			this.object=object;
 		}
 
-		public Class getObject() {
+		public Object getObject() {
 			return object;
 		}
 

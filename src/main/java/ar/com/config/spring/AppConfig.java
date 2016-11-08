@@ -5,15 +5,39 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.hibernate3.HibernateExceptionTranslator;
+import org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 import ar.com.DataLayer.data.DataLayerImple;
 import ar.com.DataLayer.data.DataLayerImple;
+import ar.com.ServiceLayer.ServiceBO;
+import ar.com.ServiceLayer.ServiceLayer;
+import ar.com.model.domain.Campania;
+import ar.com.model.domain.Comision;
+import ar.com.model.domain.DetalleVenta;
+import ar.com.model.domain.Persona;
+import ar.com.model.domain.Producto;
+import ar.com.model.domain.Usuario;
+import ar.com.model.domain.Venta;
 import ar.com.repository.Repository;
 
 
@@ -45,9 +69,41 @@ public class AppConfig {
 		
 		return entityManagerFactory;
 	}
+	
+	@Bean
+	public HibernateExceptionTranslator exceptionTranslator(){
+		return new HibernateExceptionTranslator();
+	}
+	
+	@Bean(name="transactionManager")
+	public JpaTransactionManager transactionManager(){
+		return new JpaTransactionManager();
+	}
 	@Bean
 	public Repository ReadRepository(){
 		return new DataLayerImple();
+	}
+	@Bean
+	public ServiceBO Service(){
+		return new ServiceLayer();
+	}
+	
+	@Bean(name="Factory") 
+	public AnnotationSessionFactoryBean sessionFactoryBean(){
+		AnnotationSessionFactoryBean sessionFactoryBean = new AnnotationSessionFactoryBean();
+		
+		Class[] annotatedClasses = {Persona.class,Usuario.class,Producto.class,Venta.class,DetalleVenta.class,Comision.class,Campania.class};
+		sessionFactoryBean.setAnnotatedClasses(annotatedClasses); 
+		
+		Properties hibernateProperties = new Properties();
+		hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
+		hibernateProperties.setProperty("hibernate.show_sql", "true");
+		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
+		
+		sessionFactoryBean.setHibernateProperties(hibernateProperties);
+		sessionFactoryBean.setDataSource(dataSource());
+		
+		return sessionFactoryBean;
 	}
 	
 	

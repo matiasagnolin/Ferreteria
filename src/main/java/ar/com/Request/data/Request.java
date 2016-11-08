@@ -5,11 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 public class Request {
 	
-		private List<Object> list = new ArrayList<Object>();
-		
-		public Request(){}
+		private List<Object> list = new ArrayList<Object>();		
 		private Object object;
-		private Serializable id;
+		private String id;
+		public Request(){}
 		public List<Object> getList() {
 			return list;
 		}
@@ -21,10 +20,15 @@ public class Request {
 			this.object=object;
 		}
 
+		public String getId() {
+			return id;
+		}
+		public void setId(String id) {
+			this.id = id;
+		}
 		public Object getObject() {
 			return object;
 		}
 
-		
 	}
 

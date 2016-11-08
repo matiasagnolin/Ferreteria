@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -31,6 +32,7 @@ public class Persona implements Serializable{
 	private String FechaDeNac_Persona;
 	@Column(name="Domicilio_Persona")
 	private String Domicilio_Persona;
+	
 	@OneToOne(cascade= CascadeType.ALL)
 	//@JoinColumn(name="Nombre_Usuario")
 	private Usuario usuario;
@@ -155,8 +157,7 @@ public class Persona implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Persona [DNI_Persona=" + DNI_Persona + ", usuario=" + usuario
-				+ "]";
+		return  DNI_Persona;
 	}
 
 

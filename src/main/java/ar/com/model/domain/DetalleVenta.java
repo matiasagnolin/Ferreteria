@@ -18,7 +18,7 @@ public class DetalleVenta {
 	//@EmbeddedId
 	@ManyToOne(cascade= CascadeType.ALL)
 	private Venta venta;
-	@OneToOne
+	@OneToOne(cascade=CascadeType.MERGE)
 	private Producto producto;
 	@Column(name="Cantidad")
 	private int cantidad;

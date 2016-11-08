@@ -5,6 +5,13 @@ import java.util.List;
 
 
 
+
+
+
+
+
+
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,8 +24,9 @@ import org.springframework.transaction.annotation.Transactional;
 import ar.com.Hibernate.*;
 import ar.com.repository.Repository;
 
-
-public class DataLayerImple implements Repository {
+@org.springframework.stereotype.Repository
+public class DataLayerImple<T>implements Repository {
+	
 	
 	private HibernateTemplate hibernateTemplate = null;
 	
@@ -28,19 +36,32 @@ public class DataLayerImple implements Repository {
 	}
 	
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
-	public List<Object> ReadAll(Class clazz) {
-		return hibernateTemplate.loadAll(clazz);
+	public List<Object> ReadAll(Class obj) {
+		return (List<Object>) hibernateTemplate.loadAll(obj);
 	}
 
 	@Transactional(propagation=Propagation.REQUIRED)
-	public void save(Object customer) {
-		hibernateTemplate.save(customer);
+	public void save(Object t) {
+		hibernateTemplate.save(t);
 	}
 
-	@Override
-	public void ReadOne(Class clazz, Serializable id) {
-		// TODO Auto-generated method stub
+
+	@Transactional(propagation=Propagation.REQUIRED)
+	public Object ReadOne(Class t, Serializable id) throws Exception{
+		Object obj=null;
+		System.out.println(t+" "+id+ " request");
+		obj=hibernateTemplate.get(t, id);
+		System.out.println(obj.toString()+" DAO");
+		if(obj == null) throw new Exception();
+		else{return obj;}
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED)
+	public void update(Object t) {
+		hibernateTemplate.update(t);
 		
 	}
+
+	
 
 }

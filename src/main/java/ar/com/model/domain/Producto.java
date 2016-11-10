@@ -16,10 +16,10 @@ public class Producto implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+//	@Id
+//	@GeneratedValue(strategy=GenerationType.AUTO)
+//	private int ID_Producto;
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int ID_Producto;
-	@Column(name="Descripcion_Producto")
 	private String Descripcion_Producto;
 	@Column(name="Stock_Producto")
 	private int Stock_Producto;
@@ -36,8 +36,8 @@ public class Producto implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "Producto [ID_Producto=" + ID_Producto
-				+ ", Descripcion_Producto=" + Descripcion_Producto
+		return 
+				 ", Descripcion_Producto=" + Descripcion_Producto
 				+ ", Stock_Producto=" + Stock_Producto
 				+ ", Precio_Unitario_Producto=" + Precio_Unitario_Producto
 				+ "]";
@@ -57,33 +57,33 @@ public class Producto implements Serializable{
 		this.comision=comision;
 	}
 	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ID_Producto;
-		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Producto other = (Producto) obj;
-		if (ID_Producto != other.ID_Producto)
-			return false;
-		return true;
-	}
+//	@Override
+//	public int hashCode() {
+//		final int prime = 31;
+//		int result = 1;
+//		result = prime * result + ID_Producto;
+//		return result;
+//	}
+//	@Override
+//	public boolean equals(Object obj) {
+//		if (this == obj)
+//			return true;
+//		if (obj == null)
+//			return false;
+//		if (getClass() != obj.getClass())
+//			return false;
+//		Producto other = (Producto) obj;
+//		if (ID_Producto != other.ID_Producto)
+//			return false;
+//		return true;
+//	}
 	
-	public int getID_Producto() {
-		return ID_Producto;
-	}
-	public void setID_Producto(int iD_Producto) {
-		ID_Producto = iD_Producto;
-	}
+//	public int getID_Producto() {
+//		return ID_Producto;
+//	}
+//	public void setID_Producto(int iD_Producto) {
+//		ID_Producto = iD_Producto;
+//	}
 	public String getDescripcion_Producto() {
 		return Descripcion_Producto;
 	}

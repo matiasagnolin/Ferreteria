@@ -7,7 +7,7 @@ public class Request {
 	
 		private List<Object> list = new ArrayList<Object>();		
 		private Object object;
-		private String id;
+		private Serializable id;
 		public Request(){}
 		public List<Object> getList() {
 			return list;
@@ -20,10 +20,10 @@ public class Request {
 			this.object=object;
 		}
 
-		public String getId() {
+		public Serializable getId() {
 			return id;
 		}
-		public void setId(String id) {
+		public void setId(Serializable id) {
 			this.id = id;
 		}
 		public Object getObject() {

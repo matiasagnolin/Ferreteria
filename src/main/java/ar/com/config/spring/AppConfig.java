@@ -29,7 +29,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 import ar.com.DataLayer.data.DataLayerImple;
 import ar.com.DataLayer.data.DataLayerImple;
-import ar.com.ServiceLayer.ServiceBO;
+import ar.com.ServiceLayer.ServiceCRUD;
 import ar.com.ServiceLayer.ServiceLayer;
 import ar.com.model.domain.Campania;
 import ar.com.model.domain.Comision;
@@ -84,7 +84,7 @@ public class AppConfig {
 		return new DataLayerImple();
 	}
 	@Bean
-	public ServiceBO Service(){
+	public ServiceCRUD Service(){
 		return new ServiceLayer();
 	}
 	

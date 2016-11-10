@@ -9,7 +9,8 @@ public interface Repository{
 	public Object ReadOne(Class t,Serializable id)throws Exception;
 	public void save(Object t);
 	public void update(Object t);
-	
+	public List<Object> ExecuteQuery(String query);
+	public List<Object> GetAllByField(Object t,String field, Serializable id);
 }
 
 

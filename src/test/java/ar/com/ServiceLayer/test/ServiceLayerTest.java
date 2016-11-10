@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -14,7 +15,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import junit.framework.Assert;
 import ar.com.DataLayer.data.DataLayerImple;
 import ar.com.Request.data.Request;
-import ar.com.ServiceLayer.ServiceBO;
+import ar.com.ServiceLayer.ServiceCRUD;
 import ar.com.ServiceLayer.ServiceLayer;
 
 
@@ -32,7 +33,7 @@ import ar.com.repository.Repository;
 public class ServiceLayerTest{
 	
 	private ApplicationContext context= new AnnotationConfigApplicationContext(AppConfig.class);
-	private ServiceBO service=(ServiceBO)context.getBean("Service");
+	private ServiceCRUD service=(ServiceCRUD)context.getBean("Service");
 	
 	private List<Object> list;
 	private Persona cliente1;
@@ -77,27 +78,28 @@ public class ServiceLayerTest{
 		 Detalle.add(new DetalleVenta(vt,producto1,5,producto1.getPrecio_Unitario_Producto()*producto1.getComision().getComision(),producto1.getPrecio_Unitario_Producto()*5));
 		 vt.setDetalleventa(Detalle);		
 	} 
-	@Test
-	public void SaveProduct() throws Exception{
-		try{
-			for(Producto obj : listpr)
-			{req.setObject(obj);
-			service.Save(req);
-			}
-			}
-		catch (Exception e){Assert.fail();}
-	}
-
-	@Test
-	public void SaveCustomer() throws Exception{
-		try{
-			for(Object obj : list)
-			{req.setObject(obj);
-			service.Save(req);
-			}
-			}
-		catch (Exception e){Assert.fail();}
-	}
+	
+//	@Test
+//	public void SaveProduct() throws Exception{
+//		try{
+//			for(Producto obj : listpr)
+//			{req.setObject(obj);
+//			service.Save(req);
+//			}
+//			}
+//		catch (Exception e){Assert.fail();}
+//	}
+//
+//	@Test 
+//	public void SaveCustomer() throws Exception{
+//		try{
+//			for(Object obj : list)
+//			{req.setObject(obj);
+//			service.Save(req);
+//			}
+//			}
+//		catch (Exception e){Assert.fail();}
+//	}
 	@Test
 	public void SaveSale() throws Exception{
 		try{

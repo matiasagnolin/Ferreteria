@@ -12,6 +12,7 @@ import java.util.List;
 
 
 
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -49,9 +50,7 @@ public class DataLayerImple<T>implements Repository {
 	@Transactional(propagation=Propagation.REQUIRED)
 	public Object ReadOne(Class t, Serializable id) throws Exception{
 		Object obj=null;
-		System.out.println(t+" "+id+ " request");
 		obj=hibernateTemplate.get(t, id);
-		System.out.println(obj.toString()+" DAO");
 		if(obj == null) throw new Exception();
 		else{return obj;}
 	}
@@ -59,7 +58,19 @@ public class DataLayerImple<T>implements Repository {
 	@Transactional(propagation=Propagation.REQUIRED)
 	public void update(Object t) {
 		hibernateTemplate.update(t);
-		
+	}
+	@Transactional(propagation=Propagation.REQUIRED)
+	public List<Object> GetAllByField(Object t,String field, Serializable id) {
+		String query= "from " + t.getClass() + "where " + field +"= ?";
+		Serializable[] param = {id};
+		List<Object> obj= hibernateTemplate.find(query,param);
+		return obj;
+	}
+
+	@Override
+	public List<Object> ExecuteQuery(String query) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

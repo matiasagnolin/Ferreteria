@@ -15,6 +15,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import junit.framework.Assert;
 import ar.com.DataLayer.data.DataLayerImple;
 import ar.com.Request.data.Request;
+import ar.com.ServiceLayer.ServiceBussines;
 import ar.com.ServiceLayer.ServiceCRUD;
 import ar.com.ServiceLayer.ServiceLayer;
 
@@ -34,6 +35,7 @@ public class ServiceLayerTest{
 	
 	private ApplicationContext context= new AnnotationConfigApplicationContext(AppConfig.class);
 	private ServiceCRUD service=(ServiceCRUD)context.getBean("Service");
+	private ServiceBussines serviceBO=(ServiceBussines)context.getBean("ServiceBO");
 	
 	private List<Object> list;
 	private Persona cliente1;
@@ -100,11 +102,20 @@ public class ServiceLayerTest{
 //			}
 //		catch (Exception e){Assert.fail();}
 //	}
+//	@Test
+//	public void SaveSale() throws Exception{
+//		try{
+//			req.setObject(vt);
+//			service.Save(req);
+//			}
+//		catch (Exception e){Assert.fail();}
+//	}
+	
 	@Test
-	public void SaveSale() throws Exception{
+	public void getCoutSales() throws Exception{
 		try{
-			req.setObject(vt);
-			service.Save(req);
+			//System.out.println(serviceBO.CantidadDeVentas(vendedor2.getDNI_Persona()));
+			Assert.assertEquals(true,true);
 			}
 		catch (Exception e){Assert.fail();}
 	}

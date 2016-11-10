@@ -16,6 +16,7 @@ import javax.persistence.Table;
 
 
 @Entity
+@Inheritance(strategy=InheritanceType.JOINED)
 public class Persona implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id

@@ -17,7 +17,7 @@ import ar.com.model.domain.Venta;
 import ar.com.repository.Repository;
 
 @Service
-public class ServiceLayer<T> implements ServiceCRUD,ServiceBussines<T> {
+public class ServiceLayer implements ServiceCRUD {
 
 	@Autowired
 	private Repository data;
@@ -69,16 +69,6 @@ public class ServiceLayer<T> implements ServiceCRUD,ServiceBussines<T> {
 		
 	}
 
-
-	@Override
-	public double ComisionPorVentas(Serializable id, String field) throws Exception {
-		Venta vt= new Venta();
-		Request req = new Request();
-		req.setObject(vt);
-		req.setId(id);
-		 vt = (Venta) this.GetAllByField(req, field);
-		return 0;
-	}
 
 
 	@Override

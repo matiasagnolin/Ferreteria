@@ -17,6 +17,7 @@ import javax.sql.DataSource;
 
 
 
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -29,8 +30,10 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 import ar.com.DataLayer.data.DataLayerImple;
 import ar.com.DataLayer.data.DataLayerImple;
+import ar.com.ServiceLayer.ServiceBussines;
 import ar.com.ServiceLayer.ServiceCRUD;
 import ar.com.ServiceLayer.ServiceLayer;
+import ar.com.ServiceLayer.ServiceLayerBO;
 import ar.com.model.domain.Campania;
 import ar.com.model.domain.Comision;
 import ar.com.model.domain.DetalleVenta;
@@ -86,6 +89,10 @@ public class AppConfig {
 	@Bean
 	public ServiceCRUD Service(){
 		return new ServiceLayer();
+	}
+	@Bean
+	public ServiceBussines ServiceBO(){
+		return new ServiceLayerBO();
 	}
 	
 	@Bean(name="Factory") 

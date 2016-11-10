@@ -18,6 +18,8 @@ import javax.sql.DataSource;
 
 
 
+
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -35,11 +37,13 @@ import ar.com.ServiceLayer.ServiceCRUD;
 import ar.com.ServiceLayer.ServiceLayer;
 import ar.com.ServiceLayer.ServiceLayerBO;
 import ar.com.model.domain.Campania;
+import ar.com.model.domain.Cliente;
 import ar.com.model.domain.Comision;
 import ar.com.model.domain.DetalleVenta;
 import ar.com.model.domain.Persona;
 import ar.com.model.domain.Producto;
 import ar.com.model.domain.Usuario;
+import ar.com.model.domain.Vendedor;
 import ar.com.model.domain.Venta;
 import ar.com.repository.Repository;
 
@@ -99,7 +103,7 @@ public class AppConfig {
 	public AnnotationSessionFactoryBean sessionFactoryBean(){
 		AnnotationSessionFactoryBean sessionFactoryBean = new AnnotationSessionFactoryBean();
 		
-		Class[] annotatedClasses = {Persona.class,Usuario.class,Producto.class,Venta.class,DetalleVenta.class,Comision.class,Campania.class};
+		Class[] annotatedClasses = {Persona.class,Usuario.class,Producto.class,Venta.class,DetalleVenta.class,Comision.class,Campania.class,Vendedor.class,Cliente.class};
 		sessionFactoryBean.setAnnotatedClasses(annotatedClasses); 
 		
 		Properties hibernateProperties = new Properties();

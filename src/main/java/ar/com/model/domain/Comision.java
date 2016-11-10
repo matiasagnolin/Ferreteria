@@ -16,13 +16,13 @@ public class Comision implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int Comision_Id;
-	@Column(name="porcentaje")
-	private double Comision;
 	@Column(name="Justificacion")
 	private String Descripcion;
+	@Column(name="porcentaje")
+	private double Comision;
+	
 	
 	
 	
@@ -32,13 +32,6 @@ public class Comision implements Serializable{
 		Descripcion = descripcion;
 	}
 
-	public int getComision_Id() {
-		return Comision_Id;
-	}
-	
-	public void setComision_Id(int comision_Id) {
-		Comision_Id = comision_Id;
-	}
 	public Double getComision() {
 		return Comision;
 	}

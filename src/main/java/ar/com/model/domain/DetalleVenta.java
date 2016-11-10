@@ -22,8 +22,8 @@ public class DetalleVenta {
 	private Producto producto;
 	@Column(name="Cantidad")
 	private int cantidad;
-	@Column(name="Comision")
-	private double comision;
+//	@Column(name="Comision")
+//	private double comision;
 	@Column(name="TotalParcial")
 	private double totalParcial;
 	
@@ -36,7 +36,7 @@ public class DetalleVenta {
 		this.venta = venta;
 		this.producto = producto;
 		this.cantidad = cantidad;
-		this.comision = comision;
+//		this.comision = comision;
 		this.totalParcial = totalParcial;
 	}
 	public Venta getVenta() {
@@ -57,12 +57,12 @@ public class DetalleVenta {
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
-	public double getComision() {
-		return comision;
-	}
-	public void setComision(double comision) {
-		this.comision = comision;
-	}
+//	public double getComision() {
+//		return comision;
+//	}
+//	public void setComision(double comision) {
+//		this.comision = comision;
+//	}
 	public double getTotalParcial() {
 		return totalParcial;
 	}
@@ -102,7 +102,7 @@ public class DetalleVenta {
 	@Override
 	public String toString() {
 		return "DetalleVenta [venta=" + venta + ", producto=" + producto
-				+ ", cantidad=" + cantidad + ", comision=" + comision
+				//+ ", cantidad=" + cantidad + ", comision=" + comision
 				+ ", totalParcial=" + totalParcial + "]";
 	}
 	

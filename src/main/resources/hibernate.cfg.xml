@@ -15,7 +15,7 @@
 		<property name="hibernate.hbm2ddl.auto">update</property>
 
      <mapping class="ar.com.model.domain.Campania"></mapping>
-
+<mapping class="ar.com.model.domain.Persona"></mapping>
      <mapping class="ar.com.model.domain.Producto"></mapping>
      <mapping class="ar.com.model.domain.Usuario"></mapping>
      <mapping class="ar.com.model.domain.Venta"></mapping>

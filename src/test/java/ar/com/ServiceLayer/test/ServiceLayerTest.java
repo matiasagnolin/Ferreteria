@@ -22,11 +22,13 @@ import ar.com.ServiceLayer.ServiceLayer;
 
 import ar.com.config.spring.AppConfig;
 import ar.com.config.spring.AppConfig2;
+import ar.com.model.domain.Cliente;
 import ar.com.model.domain.Comision;
 import ar.com.model.domain.DetalleVenta;
 import ar.com.model.domain.Persona;
 import ar.com.model.domain.Producto;
 import ar.com.model.domain.Usuario;
+import ar.com.model.domain.Vendedor;
 import ar.com.model.domain.Venta;
 import ar.com.repository.Repository;
 
@@ -56,34 +58,22 @@ public class ServiceLayerTest{
 		req= new Request();
 		Detalle =  new ArrayList<DetalleVenta>();
 		listpr = new ArrayList<Producto>();
-		list= new ArrayList<Object>();
-		cliente1 = new Persona("38277272","Matias","Agnolin","47448589","matiasagnolin@gmail.com",
-							"18061994","sobremonte 1728"); 
-		vendedor2 = new Persona("1111111","pepito","Dummy","11111111","pepito.dummy@gmail.com",
-							"19950902","pepito 1735"); 
-		 usuario1 = new Usuario("usuario1", "123", 0,cliente1);
-		 usuario2 = new Usuario("usuario2", "123", 1,vendedor2);
-		 cliente1.setUsuario(usuario1);
-		 vendedor2.setUsuario(usuario2);
-		 Producto producto= new Producto("tornillo",50,125,new Comision(0.10, "Comision normal"));
-		 Producto producto1= new Producto("arandela",500,15,new Comision(0.10, "Comision normal"));
-		 Producto producto2= new Producto("martillo",510,1,new Comision(0.10, "Comision normal"));
-		 Producto producto3= new Producto("sopapa",250,25,new Comision(0.20, "Comision superior"));
-		 listpr.add(producto);
-		 listpr.add(producto1);
-		 listpr.add(producto2);
-		 listpr.add(producto3);
-		 list.add(cliente1);
-		 list.add(vendedor2);
-		 vt = new Venta(usuario1,usuario2 ,"20160101");
-		 Detalle.add(new DetalleVenta(vt,producto,5,producto.getPrecio_Unitario_Producto()*producto.getComision().getComision(),producto.getPrecio_Unitario_Producto()*5));
-		 Detalle.add(new DetalleVenta(vt,producto1,5,producto1.getPrecio_Unitario_Producto()*producto1.getComision().getComision(),producto1.getPrecio_Unitario_Producto()*5));
-		 vt.setDetalleventa(Detalle);		
+		list= new ArrayList<Object>(); 
+		 
+		 	
 	} 
 	
 //	@Test
 //	public void SaveProduct() throws Exception{
 //		try{
+//			Producto producto= new Producto("tornillo",50,125,new Comision(0.10, "Comision normal"));
+//			 Producto producto1= new Producto("arandela",500,15,new Comision(0.10, "Comision normal"));
+//			 Producto producto2= new Producto("martillo",510,1,new Comision(0.10, "Comision normal"));
+//			 Producto producto3= new Producto("sopapa",250,25,new Comision(0.00, "Comision nula"));
+//			 listpr.add(producto);
+//			 listpr.add(producto1);
+//			 listpr.add(producto2);
+//			 listpr.add(producto3);
 //			for(Producto obj : listpr)
 //			{req.setObject(obj);
 //			service.Save(req);
@@ -93,8 +83,18 @@ public class ServiceLayerTest{
 //	}
 //
 //	@Test 
-//	public void SaveCustomer() throws Exception{
+//	public void SavePeople() throws Exception{
 //		try{
+//			cliente1 = new Cliente("38277272","Matias","Agnolin","47448589","matiasagnolin@gmail.com",
+//									"18061994","sobremonte 1728"); 
+//			vendedor2 = new Vendedor("1111111","pepito","Dummy","11111111","pepito.dummy@gmail.com",
+//										"19950902","pepito 1735"); 
+//			 usuario1 = new Usuario("usuario1", "123", 0,cliente1);
+//			 usuario2 = new Usuario("usuario2", "123", 1,vendedor2);
+//			 cliente1.setUsuario(usuario1);
+//			 vendedor2.setUsuario(usuario2);
+//			 list.add(vendedor2);
+//			 list.add(cliente1);
 //			for(Object obj : list)
 //			{req.setObject(obj);
 //			service.Save(req);
@@ -105,38 +105,60 @@ public class ServiceLayerTest{
 //	@Test
 //	public void SaveSale() throws Exception{
 //		try{
+//			cliente1 = new Cliente("38277272","Matias","Agnolin","47448589","matiasagnolin@gmail.com",
+//			"18061994","sobremonte 1728"); 
+//			vendedor2 = new Vendedor("1111111","pepito","Dummy","11111111","pepito.dummy@gmail.com",
+//			"19950902","pepito 1735"); 
+//			usuario1 = new Usuario("usuario1", "123", 0,cliente1);
+//			usuario2 = new Usuario("usuario2", "123", 1,vendedor2);
+//			cliente1.setUsuario(usuario1);
+//			vendedor2.setUsuario(usuario2);
+//			Producto producto= new Producto("tornillo",50,125,new Comision(0.10, "Comision normal"));
+//			 Producto producto1= new Producto("arandela",500,15,new Comision(0.10, "Comision superior"));
+//			vt = new Venta(usuario1,usuario2 ,"20160101");
+//			 Detalle.add(new DetalleVenta(vt,producto,5,producto.getPrecio_Unitario_Producto()*producto.getComision().getComision(),producto.getPrecio_Unitario_Producto()*5));
+//			 Detalle.add(new DetalleVenta(vt,producto1,5,producto1.getPrecio_Unitario_Producto()*producto1.getComision().getComision(),producto1.getPrecio_Unitario_Producto()*5));
+//			 vt.setDetalleventa(Detalle);	
 //			req.setObject(vt);
 //			service.Save(req);
 //			}
 //		catch (Exception e){Assert.fail();}
 //	}
 	
-	@Test
-	public void getCoutSales() throws Exception{
-		try{
-			//System.out.println(serviceBO.CantidadDeVentas(vendedor2.getDNI_Persona()));
-			Assert.assertEquals(true,true);
-			}
-		catch (Exception e){Assert.fail();}
-	}
-
 //	@Test
-//	public void getCustomer() throws Exception{
-//		req.setObject(cliente1);
-//		Assert.assertTrue(service.ReadAll(req).size() == 1);
+//	public void getCountSales() throws Exception{
+//		try{
+//			//System.out.println(serviceBO.CantidadDeVentas(vendedor2.getDNI_Persona()));
+//			Assert.assertEquals(true,true);
+//			}
+//		catch (Exception e){Assert.fail();}
 //	}
+
+	@Test
+	public void getCustomer() throws Exception{
+		cliente1 = new Cliente("38277272","Matias","Agnolin","47448589","matiasagnolin@gmail.com",
+				"18061994","sobremonte 1728"); 
+				usuario1 = new Usuario("usuario1", "123", 0,cliente1);
+				cliente1.setUsuario(usuario1);
+		req.setObject(cliente1);
+		Assert.assertTrue(service.ReadAll(req).size() == 1);
+	}
 //	
 	
-//
-//	@Test
-//	public void getOneCustomer() throws Exception{
-//		req.setObject(cliente1);
-//		req.setId(cliente1.getDNI_Persona());
-//		Persona ps=null;
-//		try{ ps = (Persona) service.ReadOne(req);}
-//		catch(Exception ex){System.out.println("CATCH");}
-//		finally{Assert.assertEquals(ps.getDNI_Persona(),cliente1.getDNI_Persona());}
-//	}
+
+	@Test
+	public void getOneCustomer() throws Exception{
+		cliente1 = new Cliente("38277272","Matias","Agnolin","47448589","matiasagnolin@gmail.com",
+		"18061994","sobremonte 1728"); 
+		usuario1 = new Usuario("usuario1", "123", 0,cliente1);
+		cliente1.setUsuario(usuario1);
+		req.setObject(cliente1);
+		req.setId(cliente1.getDNI_Persona());
+		Persona ps=null;
+		try{ ps = (Persona) service.ReadOne(req);}
+		catch(Exception ex){System.out.println("CATCH");}
+		finally{Assert.assertEquals(ps.getDNI_Persona(),cliente1.getDNI_Persona());}
+	}
 
 
 //	@Test

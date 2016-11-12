@@ -116,4 +116,7 @@ public class Venta implements Serializable{
 				+ ", vendedor=" + vendedor ;
 		
 	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 }

@@ -31,7 +31,21 @@ public double getComision() {
 		return Comision;
 	}
 	public void setComision(double comision) {
-		Comision = comision;
+		Comision = this.Comision+comision;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Vendedor other = (Vendedor) obj;
+		if (this.getDNI_Persona() != other.getDNI_Persona())
+			return false;
+		return true;
 	}
 	
 }

@@ -7,6 +7,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import ar.com.Request.data.Request;
+import ar.com.model.domain.Calendario;
+import ar.com.model.domain.Comision;
 import ar.com.model.domain.DetalleVenta;
 import ar.com.model.domain.Persona;
 import ar.com.model.domain.Vendedor;
@@ -14,47 +16,80 @@ import ar.com.model.domain.Venta;
 import ar.com.repository.Repository;
 
 public class ServiceLayerBO implements ServiceBussines {
-	@Autowired
-	private ServiceCRUD data;
+
 	
-	private Request req = new Request();
-	private List<Venta> lsvt;
-	private List <Vendedor> vnd;
+	private List<Comision> listcm= new ArrayList<Comision>();
+	
+	private List<Venta> lsvt = new ArrayList<Venta>();
+	
+	private List <Vendedor> vnd = new ArrayList<Vendedor>();
+	
+	@Autowired
+	private Calendario calendario;
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public int CantidadDeVentas(Serializable id) throws Exception {
-		Venta vt= new Venta();
-		lsvt= new ArrayList<Venta>();
+	public int getCantidadDeVentas(Vendedor vd) throws Exception {
 		int cont=0;
-		
-		req.setObject(vt);
-		
-		lsvt=(List<Venta>)(Object)data.ReadAll(req);
-		for(Venta vent : lsvt)
-			if(vent.getVendedor().getPersona().getDNI_Persona().equals(id))
+		for(Venta vent : lsvt){
+			if(vent.getVendedor().getPersona().toString().equals(vd.getDNI_Persona().toString())){
 				cont++;
+			}
+		}
 		return cont;
 		}
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public void ObtenerCantidadDeVentas() throws Exception {
-		Persona vn = new Vendedor();
-		 vnd= new ArrayList<Vendedor>();
-		req.setObject(vn);
-		vnd=(List<Vendedor>)(Object)data.ReadAll(req);
-		for(Vendedor vdd : vnd)
-			vdd.setCantVentas(this.CantidadDeVentas(vdd.getDNI_Persona()));
+	public Vendedor setCantidadDeVentas(Vendedor vd) throws Exception {
+			vd.setCantVentas(this.getCantidadDeVentas(vd));
+			return vd;
 		}
 
 	@Override
-	public void ComisionPorVentas() {
-		for(Vendedor vend : vnd)
+	public Vendedor setComisionPorProductoVendido(Vendedor vd) {
 			for(Venta vta : lsvt)
-				if(vta.getVendedor().getPersona().getDNI_Persona().equals(vend.getDNI_Persona()))
-					for(DetalleVenta dtvta : vta.getDetalleventa())
-						vend.setComision(dtvta.getProducto().getPrecio_Unitario_Producto()*dtvta.getProducto().getComision().getComision()*dtvta.getCantidad());
+				if(vta.getVendedor().getPersona().getDNI_Persona().toString().equals(vd.getDNI_Persona().toString()))
+					for(DetalleVenta dtvta : vta.getDetalleventa())//if la comision e la que tiene porcentaje.
+						vd.setComision(dtvta.getProducto().getPrecio_Unitario_Producto()*dtvta.getProducto().getComision().getPorcentaje()*dtvta.getCantidad());
+			return vd;
 	}
+
+	@Override
+	public void setComisionPorCantidadVentas(Vendedor vendedor) 
+  {
+		for(Comision cm : listcm)
+		{
+			if(cm.getTipo()==2 && calendario.getDiffFecha(cm.getClose_date())>0){
+				if(vendedor.getCantVentas()!=0)
+				{
+					if(vendedor.getCantVentas()>=cm.getMinimo() ||  vendedor.getCantVentas()<=cm.getMaximo())
+					vendedor.setComision(cm.getValor());
+				}
+		  }
+			
+	}
+  }
+	
+
+	
+
+	@Override
+	public void setLsvt(List lsvt) {
+		this.lsvt = lsvt;
+	}
+
+	@Override
+	public List getLsvt() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setVnd(List vnd) {
+		this.vnd=vnd;
+		
+	}
+	
  
 }

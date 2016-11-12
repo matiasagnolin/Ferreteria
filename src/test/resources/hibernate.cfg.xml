@@ -23,6 +23,7 @@
      <mapping class="ar.com.model.domain.DetalleVenta"></mapping>
      <mapping class="ar.com.model.domain.Cliente"></mapping>
      <mapping class="ar.com.model.domain.Vendedor"></mapping>
+     <mapping class="ar.com.model.domain.Calendario"></mapping>
 
    </session-factory>
  </hibernate-configuration>

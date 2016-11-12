@@ -31,7 +31,7 @@ public class DetalleVenta {
 	
 	
 	public DetalleVenta(Venta venta, Producto producto, int cantidad,
-			double comision, double totalParcial) {
+			 double totalParcial) {
 		super();
 		this.venta = venta;
 		this.producto = producto;

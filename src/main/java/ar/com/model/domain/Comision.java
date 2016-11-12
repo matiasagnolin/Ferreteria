@@ -20,24 +20,133 @@ public class Comision implements Serializable{
 	@Id
 	@Column(name="Justificacion")
 	private String Descripcion;
+	private int minimo;
+	private int maximo;
 	@Column(name="porcentaje")
-	private double Comision;
+	private double Porcentaje;
+	private double valor;
+	private String create_date;
+	private String close_date;
+	private int tipo;
 	
 	
+	public Comision (){}
+	public Comision (String descripcion, int minimo,int maximo,double porcentaje,double valor,String create_date,String close_date,int tipo){
+		this.close_date=close_date;
+		this.create_date=create_date;
+		this.Descripcion=descripcion;
+		this.maximo=maximo;
+		this.minimo=minimo;
+		this.Porcentaje=porcentaje;
+		this.tipo=tipo;
+		this.valor=valor;
+	}
+	public Comision (String descripcion,int valor,String create_date,String close_date,int tipo){
+		this.close_date=close_date;
+		this.create_date=create_date;
+		this.Descripcion=descripcion;
+		this.tipo=tipo;
+		this.valor=valor;
+	}
+	public Comision (String descripcion, int minimo,int maximo,double valor,String create_date,int tipo){
+		this.create_date=create_date;
+		this.Descripcion=descripcion;
+		this.maximo=maximo;
+		this.minimo=minimo;
+		
+		this.tipo=tipo;
+		this.valor=valor;
+	}
+	
+	public Comision (String descripcion,double porcentaje,String create_date,int tipo){
+		this.create_date=create_date;
+		this.Descripcion=descripcion;
+		this.Porcentaje=porcentaje;
+		this.tipo=tipo;
+	}
+	public Comision (String descripcion,double porcentaje,String create_date,String close_date,int tipo){
+		this.create_date=create_date;
+		this.Descripcion=descripcion;
+		this.Porcentaje=porcentaje;
+		this.tipo=tipo;
+	}
 	
 	
-	public Comision( Double comision, String descripcion) {
-		super();
-		Comision = comision;
-		Descripcion = descripcion;
+	public double getPorcentaje() {
+		return Porcentaje;
 	}
 
-	public Double getComision() {
-		return Comision;
+
+	public void setPorcentaje(double porcentaje) {
+		Porcentaje = porcentaje;
 	}
-	public void setComision(float comision) {
-		Comision = comision;
+
+
+	public double getValor() {
+		return valor;
 	}
+
+
+	public void setValor(double valor) {
+		this.valor = valor;
+	}
+
+
+	public int getMinimo() {
+		return minimo;
+	}
+
+
+	public void setMinimo(int minimo) {
+		this.minimo = minimo;
+	}
+
+
+	public int getMaximo() {
+		return maximo;
+	}
+
+
+	public void setMaximo(int maximo) {
+		this.maximo = maximo;
+	}
+
+
+	public String getCreate_date() {
+		return create_date;
+	}
+
+
+	public void setCreate_date(String create_date) {
+		this.create_date = create_date;
+	}
+
+
+	public String getClose_date() {
+		return close_date;
+	}
+
+
+	public void setClose_date(String close_date) {
+		this.close_date = close_date;
+	}
+
+
+	public int getTipo() {
+		return tipo;
+	}
+
+
+	public void setTipo(int tipo) {
+		this.tipo = tipo;
+	}
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
 	public String getDescripcion() {
 		return Descripcion;
 	}

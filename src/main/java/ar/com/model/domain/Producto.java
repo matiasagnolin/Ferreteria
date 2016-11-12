@@ -57,33 +57,6 @@ public class Producto implements Serializable{
 		this.comision=comision;
 	}
 	
-//	@Override
-//	public int hashCode() {
-//		final int prime = 31;
-//		int result = 1;
-//		result = prime * result + ID_Producto;
-//		return result;
-//	}
-//	@Override
-//	public boolean equals(Object obj) {
-//		if (this == obj)
-//			return true;
-//		if (obj == null)
-//			return false;
-//		if (getClass() != obj.getClass())
-//			return false;
-//		Producto other = (Producto) obj;
-//		if (ID_Producto != other.ID_Producto)
-//			return false;
-//		return true;
-//	}
-	
-//	public int getID_Producto() {
-//		return ID_Producto;
-//	}
-//	public void setID_Producto(int iD_Producto) {
-//		ID_Producto = iD_Producto;
-//	}
 	public String getDescripcion_Producto() {
 		return Descripcion_Producto;
 	}

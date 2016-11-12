@@ -68,27 +68,7 @@ public class Persona implements Serializable{
 			this.DNI_Persona = DNI_Persona;	
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + Integer.parseInt(DNI_Persona);
-		return result;
-	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Persona other = (Persona) obj;
-		if (DNI_Persona != other.DNI_Persona)
-			return false;
-		return true;
-	}
 
 	public String getDNI_Persona() {
 		return DNI_Persona;

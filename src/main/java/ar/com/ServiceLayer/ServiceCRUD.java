@@ -11,4 +11,5 @@ public void Save(Request req);
 public void Update(Request req);
 public void Delete (Request req);
 public List<Object>GetAllByField(Request req, String field);
+public int getDiffFecha(String Fecha);
 }

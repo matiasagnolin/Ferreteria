@@ -11,6 +11,7 @@ public interface Repository{
 	public void update(Object t);
 	public List<Object> ExecuteQuery(String query);
 	public List<Object> GetAllByField(Object t,String field, Serializable id);
+	
 }
 
 

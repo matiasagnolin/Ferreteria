@@ -1,7 +1,11 @@
 package ar.com.ServiceLayer;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +16,7 @@ import org.springframework.stereotype.Service;
 import ar.com.DataLayer.data.DataLayerImple;
 import ar.com.Request.data.Request;
 import ar.com.config.spring.AppConfig;
-import ar.com.config.spring.AppConfig2;
+
 import ar.com.model.domain.Venta;
 import ar.com.repository.Repository;
 
@@ -76,6 +80,15 @@ public class ServiceLayer implements ServiceCRUD {
 		data.GetAllByField(req.getObject(), field, req.getId());
 		return null;
 	}
+
+
+	@Override
+	public int getDiffFecha(String Fecha) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
 
 	
 

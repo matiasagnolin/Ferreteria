@@ -1,24 +1,10 @@
 package ar.com.config.spring;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import javax.sql.DataSource;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,13 +16,17 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
+
+
+
 import ar.com.DataLayer.data.DataLayerImple;
 import ar.com.DataLayer.data.DataLayerImple;
 import ar.com.ServiceLayer.ServiceBussines;
 import ar.com.ServiceLayer.ServiceCRUD;
 import ar.com.ServiceLayer.ServiceLayer;
 import ar.com.ServiceLayer.ServiceLayerBO;
-import ar.com.model.domain.Campania;
+import ar.com.model.domain.Calendario;
+
 import ar.com.model.domain.Cliente;
 import ar.com.model.domain.Comision;
 import ar.com.model.domain.DetalleVenta;
@@ -50,7 +40,7 @@ import ar.com.repository.Repository;
 
 @Configuration
 @EnableJpaRepositories(basePackages="ar.com.repository")
-public class AppConfig {
+public class AppConfig<T> {
 
 	@Bean
 	public DataSource dataSource(){
@@ -98,12 +88,17 @@ public class AppConfig {
 	public ServiceBussines ServiceBO(){
 		return new ServiceLayerBO();
 	}
+	@Bean
+	public Calendario Calendario(){
+		return new Calendario();
+	}
 	
 	@Bean(name="Factory") 
 	public AnnotationSessionFactoryBean sessionFactoryBean(){
 		AnnotationSessionFactoryBean sessionFactoryBean = new AnnotationSessionFactoryBean();
 		
-		Class[] annotatedClasses = {Persona.class,Usuario.class,Producto.class,Venta.class,DetalleVenta.class,Comision.class,Campania.class,Vendedor.class,Cliente.class};
+		Class[] annotatedClasses = {Persona.class,Usuario.class,Producto.class,Venta.class,DetalleVenta.class,Comision.class,
+				Vendedor.class,Cliente.class,Calendario.class};
 		sessionFactoryBean.setAnnotatedClasses(annotatedClasses); 
 		
 		Properties hibernateProperties = new Properties();

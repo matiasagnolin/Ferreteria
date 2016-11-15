@@ -26,7 +26,7 @@ public class DetalleVenta {
 //	private double comision;
 	@Column(name="TotalParcial")
 	private double totalParcial;
-	
+	public DetalleVenta(){}
 	
 	
 	

@@ -1,7 +1,12 @@
 package ar.com.ServiceLayer;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,26 +55,61 @@ public class ServiceLayerBO implements ServiceBussines {
 	public Vendedor setComisionPorProductoVendido(Vendedor vd) {
 			for(Venta vta : lsvt)
 				if(vta.getVendedor().getPersona().getDNI_Persona().toString().equals(vd.getDNI_Persona().toString()))
-					for(DetalleVenta dtvta : vta.getDetalleventa())//if la comision e la que tiene porcentaje.
+					for(DetalleVenta dtvta : vta.getDetalleventa()){
+						if(dtvta.getProducto().getComision().getTipo()==1){
 						vd.setComision(dtvta.getProducto().getPrecio_Unitario_Producto()*dtvta.getProducto().getComision().getPorcentaje()*dtvta.getCantidad());
+						}}
 			return vd;
 	}
 
 	@Override
-	public void setComisionPorCantidadVentas(Vendedor vendedor) 
-  {
+	public void setComisionPorCantidadVentas(Vendedor vendedor){ 
 		for(Comision cm : listcm)
 		{
-			if(cm.getTipo()==2 && calendario.getDiffFecha(cm.getClose_date())>0){
+			if(cm.getTipo()==2){
 				if(vendedor.getCantVentas()!=0)
 				{
-					if(vendedor.getCantVentas()>=cm.getMinimo() ||  vendedor.getCantVentas()<=cm.getMaximo())
+					if(vendedor.getCantVentas()>=cm.getMinimo() &&  vendedor.getCantVentas()<=cm.getMaximo())
 					vendedor.setComision(cm.getValor());
 				}
 		  }
-			
 	}
   }
+	
+//	@Override
+@SuppressWarnings("unchecked")
+	//	public void setComisionPorCampania(Vendedor vendedor) throws ParseException{
+//	SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+//	for(Venta vta : lsvt)
+//	{
+//		if(vta.getVendedor().getPersona().getDNI_Persona().toString().equals(vendedor.getDNI_Persona().toString()))
+//		{
+//			for(DetalleVenta dtvta : vta.getDetalleventa())
+//			{
+//				if(dtvta.getProducto().getComision().getTipo()==3)
+//				{
+//					Date date1= formatter.parse(dtvta.getProducto().getComision().getClose_date());
+//					Date date2=formatter.parse(calendario.getDate());
+//					if(date1.compareTo(date2)>0)
+//					{
+//						vendedor.setComision(dtvta.getProducto().getComision().getValor());
+//					}
+//					
+//				}
+//		  }
+//	   }
+//	}
+//  }
+	@Override
+	public void setComisionPrimerVendedor(){ 
+		Collections.sort(vnd);
+		for(Comision cm : listcm)
+		{
+			if(cm.getTipo()==4){
+		vnd.get(0).setComision(cm.getValor());}
+		}
+	}
+  
 	
 
 	
@@ -88,8 +128,57 @@ public class ServiceLayerBO implements ServiceBussines {
 	@Override
 	public void setVnd(List vnd) {
 		this.vnd=vnd;
-		
+	}
+
+	@Override
+	public void setLstcm(List<Comision> cm) {
+		this.listcm=cm;
+	}
+
+	@Override
+	public void setCantidadCampania(Vendedor vendedor) throws ParseException {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+		for(Venta vta : lsvt)
+		{
+			if(vta.getVendedor().getPersona().getDNI_Persona().toString().equals(vendedor.getDNI_Persona().toString()))
+			{
+				for(DetalleVenta dtvta : vta.getDetalleventa())
+				{
+					if(dtvta.getProducto().getComision().getTipo()==4)
+					{
+						Date date1= formatter.parse(dtvta.getProducto().getComision().getClose_date());
+						Date date2=formatter.parse(calendario.getDate());
+						if(date1.compareTo(date2)>0)
+						{
+							vendedor.setCantPremio(vendedor.getCantPremio()+(1*dtvta.getCantidad()));
+						}
+					}
+				}
+			}
+		}
 	}
 	
- 
+	@Override
+	 public void Ordenar()
+	 {
+		 for (int i = 0; i < vnd.size(); i++) {
+
+			    for (int j = vnd.size() - 1; j > i; j--) {
+			        if (vnd.get(i).getCantPremio() > vnd.get(j).getCantPremio()) 
+			        {
+			            Vendedor tmp = vnd.get(i);
+			            vnd.set(i,vnd.get(j));
+			            vnd.set(j,tmp);
+			        }
+
+			    } 
+		 }
+		 for(Comision cm : listcm)
+			{
+				if(cm.getTipo()==4)
+				{
+					vnd.get(vnd.size()-1).setComision(cm.getValor());
+				}	
+	 }
+	 }
 }

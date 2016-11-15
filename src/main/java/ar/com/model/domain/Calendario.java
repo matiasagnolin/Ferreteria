@@ -1,6 +1,8 @@
 package ar.com.model.domain;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -14,7 +16,7 @@ public class Calendario {
 	private String nombre_mes;
 	private String primer_dia;
 	private String ultimo_dia;
-	
+	DateFormat dateFormat; 
 	public Calendario(){}
 
 	public int getId() {
@@ -130,7 +132,15 @@ public class Calendario {
         System.out.println("Meses: " + meses);
         System.out.println("Días: " + dias);
         return dias;
-	        
 	    }
+	
+	public String getDate()
+	{
+		dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		Calendar cal = Calendar.getInstance();
+		   return dateFormat.format(cal.getTime());
+	}
+	
+	
 	
 }

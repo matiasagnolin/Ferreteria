@@ -34,7 +34,7 @@ public class Venta implements Serializable{
 	
 	@ManyToOne
 	private Usuario vendedor;
-	@OneToMany(cascade= CascadeType.ALL)
+	@OneToMany(cascade= CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<DetalleVenta> detalleventa;
 	
 	@Column(name="Fecha_Venta")

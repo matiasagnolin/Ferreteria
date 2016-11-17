@@ -13,7 +13,7 @@ import ar.com.repository.Repository;
 @Controller
 public class HomeController {
 	
-	@Autowired
+@Autowired
 	private Repository dataService;
 	
 	@RequestMapping(value="/")

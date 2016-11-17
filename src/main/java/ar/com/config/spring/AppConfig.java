@@ -93,7 +93,7 @@ public class AppConfig<T> {
 		return new Calendario();
 	}
 	
-	@Bean(name="Factory") 
+	@Bean(name="sessionFactory") 
 	public AnnotationSessionFactoryBean sessionFactoryBean(){
 		AnnotationSessionFactoryBean sessionFactoryBean = new AnnotationSessionFactoryBean();
 		

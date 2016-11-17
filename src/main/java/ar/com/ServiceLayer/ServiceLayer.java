@@ -20,7 +20,7 @@ import ar.com.config.spring.AppConfig;
 import ar.com.model.domain.Venta;
 import ar.com.repository.Repository;
 
-@Service
+
 public class ServiceLayer implements ServiceCRUD {
 
 	@Autowired

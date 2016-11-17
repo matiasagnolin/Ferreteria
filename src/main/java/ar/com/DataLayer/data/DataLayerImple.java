@@ -5,17 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
-
-
-
-
-
-
-
-
-
-
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -25,10 +14,10 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import ar.com.Hibernate.*;
+
 import ar.com.repository.Repository;
 
-@org.springframework.stereotype.Repository
+
 public class DataLayerImple<T>implements Repository {
 	
 	

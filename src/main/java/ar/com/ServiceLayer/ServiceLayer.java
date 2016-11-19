@@ -45,7 +45,7 @@ public class ServiceLayer implements ServiceCRUD {
 
 	@Override
 	public Object ReadOne(Request req)throws Exception {
-		try{return data.ReadOne(req.getObject().getClass(), req.getId().toString());}
+		try{return data.ReadOne(req.getObject().getClass(), req.getId());}
 		catch(Exception ex){
 			System.out.println("BAD SERVICE");
 			ex.printStackTrace();

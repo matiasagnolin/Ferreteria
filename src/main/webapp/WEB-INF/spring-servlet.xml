@@ -10,6 +10,7 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
    <context:annotation-config />
 	<mvc:annotation-driven />
+	<mvc:resources mapping="/static/**" location="/static/" />
    <context:component-scan base-package="ar"></context:component-scan>
    
    <bean id="viewResolver"

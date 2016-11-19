@@ -27,7 +27,7 @@ public class ServiceLayerBO implements ServiceBussines {
 	
 	private List<Venta> lsvt = new ArrayList<Venta>();
 	
-	private List <Vendedor> vnd = new ArrayList<Vendedor>();
+
 	
 	@Autowired
 	private Calendario calendario;
@@ -58,6 +58,7 @@ public class ServiceLayerBO implements ServiceBussines {
 					for(DetalleVenta dtvta : vta.getDetalleventa()){
 						if(dtvta.getProducto().getComision().getTipo()==1){
 						vd.setComision(dtvta.getProducto().getPrecio_Unitario_Producto()*dtvta.getProducto().getComision().getPorcentaje()*dtvta.getCantidad());
+						System.out.println(vd.getComision()+"PRODUCTO VENDIDO");
 						}}
 			return vd;
 	}
@@ -74,6 +75,7 @@ public class ServiceLayerBO implements ServiceBussines {
 				}
 		  }
 	}
+		System.out.println(vendedor.getComision()+"CANTIDAD DE VENTAS");	
   }
 	
 //	@Override
@@ -101,13 +103,14 @@ public class ServiceLayerBO implements ServiceBussines {
 //	}
 //  }
 	@Override
-	public void setComisionPrimerVendedor(){ 
+	public void setComisionPrimerVendedor(List <Vendedor> vnd){ 
 		Collections.sort(vnd);
 		for(Comision cm : listcm)
 		{
 			if(cm.getTipo()==4){
 		vnd.get(0).setComision(cm.getValor());}
 		}
+		System.out.println(vnd.get(0).getDNI_Persona()+vnd.get(0).getComision());
 	}
   
 	
@@ -125,10 +128,7 @@ public class ServiceLayerBO implements ServiceBussines {
 		return null;
 	}
 
-	@Override
-	public void setVnd(List vnd) {
-		this.vnd=vnd;
-	}
+
 
 	@Override
 	public void setLstcm(List<Comision> cm) {
@@ -159,7 +159,7 @@ public class ServiceLayerBO implements ServiceBussines {
 	}
 	
 	@Override
-	 public void Ordenar()
+	 public void Ordenar(List <Vendedor>vnd)
 	 {
 		 for (int i = 0; i < vnd.size(); i++) {
 
@@ -180,5 +180,6 @@ public class ServiceLayerBO implements ServiceBussines {
 					vnd.get(vnd.size()-1).setComision(cm.getValor());
 				}	
 	 }
+		 System.out.println(vnd.get(vnd.size()-1).getComision());
 	 }
 }

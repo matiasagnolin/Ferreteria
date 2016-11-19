@@ -42,7 +42,9 @@ public class DataLayerImple<T>implements Repository {
 	@Transactional(propagation=Propagation.REQUIRED)
 	public Object ReadOne(Class t, Serializable id) throws Exception{
 		Object obj=null;
-		obj=hibernateTemplate.get(t, id);
+		try{
+		obj=hibernateTemplate.get(t, id);}
+		catch(Exception e){System.out.println("aa");}
 		if(obj == null) throw new Exception();
 		else{return obj;}
 	}

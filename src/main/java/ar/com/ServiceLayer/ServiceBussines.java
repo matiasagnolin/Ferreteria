@@ -20,13 +20,13 @@ public interface ServiceBussines {
 
 	public void setLsvt(List<Venta> lsvt);
 
-	public void setVnd(List<Vendedor> vnd);
+
 
 	public void setLstcm(List<Comision> vnd);
 
 	public void setCantidadCampania(Vendedor vendedor) throws ParseException;
 
-	public void setComisionPrimerVendedor();
+	public void setComisionPrimerVendedor(List<Vendedor> vnd);
 
-	public void Ordenar();
+	public void Ordenar(List<Vendedor> vnd);
 }

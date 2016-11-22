@@ -67,6 +67,12 @@ public class Persona implements Serializable{
 		
 			this.DNI_Persona = DNI_Persona;	
 	}
+	public Persona(String DNI_Persona, String nombre_Persona, String apellido_Persona)  {
+		
+		this.DNI_Persona = DNI_Persona;
+		this.Nombre_Persona = nombre_Persona;
+		this.Apellido_Persona = apellido_Persona;
+}
 
 
 

@@ -19,14 +19,15 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 
 
+
 import ar.com.DataLayer.data.DataLayerImple;
 import ar.com.DataLayer.data.DataLayerImple;
+import ar.com.Request.data.Request;
 import ar.com.ServiceLayer.ServiceBussines;
 import ar.com.ServiceLayer.ServiceCRUD;
 import ar.com.ServiceLayer.ServiceLayer;
 import ar.com.ServiceLayer.ServiceLayerBO;
 import ar.com.model.domain.Calendario;
-
 import ar.com.model.domain.Cliente;
 import ar.com.model.domain.Comision;
 import ar.com.model.domain.DetalleVenta;
@@ -91,6 +92,14 @@ public class AppConfig<T> {
 	@Bean
 	public Calendario Calendario(){
 		return new Calendario();
+	}
+	@Bean
+	public Request request(){
+		return new Request();
+	}
+	@Bean
+	public Usuario usuario(){
+		return new Usuario();
 	}
 	
 	@Bean(name="sessionFactory") 

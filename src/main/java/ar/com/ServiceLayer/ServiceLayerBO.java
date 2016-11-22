@@ -23,14 +23,15 @@ import ar.com.repository.Repository;
 public class ServiceLayerBO implements ServiceBussines {
 
 	
-	private List<Comision> listcm= new ArrayList<Comision>();
-	
-	private List<Venta> lsvt = new ArrayList<Venta>();
-	
-
-	
+	private List<Comision> listcm;
+	private List<Venta> lsvt;
 	@Autowired
 	private Calendario calendario;
+	
+	
+	public  ServiceLayerBO() {
+		
+	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
@@ -58,7 +59,7 @@ public class ServiceLayerBO implements ServiceBussines {
 					for(DetalleVenta dtvta : vta.getDetalleventa()){
 						if(dtvta.getProducto().getComision().getTipo()==1){
 						vd.setComision(dtvta.getProducto().getPrecio_Unitario_Producto()*dtvta.getProducto().getComision().getPorcentaje()*dtvta.getCantidad());
-						System.out.println(vd.getComision()+"PRODUCTO VENDIDO");
+			//			System.out.println(vd.getComision()+"PRODUCTO VENDIDO");
 						}}
 			return vd;
 	}
@@ -75,7 +76,7 @@ public class ServiceLayerBO implements ServiceBussines {
 				}
 		  }
 	}
-		System.out.println(vendedor.getComision()+"CANTIDAD DE VENTAS");	
+		//System.out.println(vendedor.getComision()+"CANTIDAD DE VENTAS");	
   }
 	
 //	@Override
@@ -110,7 +111,7 @@ public class ServiceLayerBO implements ServiceBussines {
 			if(cm.getTipo()==4){
 		vnd.get(0).setComision(cm.getValor());}
 		}
-		System.out.println(vnd.get(0).getDNI_Persona()+vnd.get(0).getComision());
+		//System.out.println(vnd.get(0).getDNI_Persona()+vnd.get(0).getComision());
 	}
   
 	
@@ -161,11 +162,12 @@ public class ServiceLayerBO implements ServiceBussines {
 	@Override
 	 public void Ordenar(List <Vendedor>vnd)
 	 {
+		for(Vendedor vdn  : vnd)System.out.println(vdn.getDNI_Persona());
 		 for (int i = 0; i < vnd.size(); i++) {
 
 			    for (int j = vnd.size() - 1; j > i; j--) {
 			        if (vnd.get(i).getCantPremio() > vnd.get(j).getCantPremio()) 
-			        {
+			        { 
 			            Vendedor tmp = vnd.get(i);
 			            vnd.set(i,vnd.get(j));
 			            vnd.set(j,tmp);
@@ -173,6 +175,7 @@ public class ServiceLayerBO implements ServiceBussines {
 
 			    } 
 		 }
+		 //for(Vendedor vdn  : vnd)System.out.println(vdn.getDNI_Persona());
 		 for(Comision cm : listcm)
 			{
 				if(cm.getTipo()==4)
@@ -180,6 +183,8 @@ public class ServiceLayerBO implements ServiceBussines {
 					vnd.get(vnd.size()-1).setComision(cm.getValor());
 				}	
 	 }
-		 System.out.println(vnd.get(vnd.size()-1).getComision());
+		
 	 }
+	
+	
 }

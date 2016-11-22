@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 import ar.com.DataLayer.data.DataLayerImple;
 import ar.com.Request.data.Request;
 import ar.com.config.spring.AppConfig;
-
 import ar.com.model.domain.Venta;
 import ar.com.repository.Repository;
 
@@ -69,7 +68,7 @@ public class ServiceLayer implements ServiceCRUD {
 
 	@Override
 	public void Delete(Request req) {
-		// TODO Auto-generated method stub
+		data.delete(req.getObject());
 		
 	}
 
@@ -86,6 +85,16 @@ public class ServiceLayer implements ServiceCRUD {
 	public int getDiffFecha(String Fecha) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+
+	@Override
+	public boolean exists(Request req) {
+		try{
+			this.ReadOne(req);
+			return true;
+			}catch(Exception e){return false;}
+		
 	}
 
 

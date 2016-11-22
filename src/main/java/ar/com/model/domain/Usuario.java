@@ -57,8 +57,9 @@ public class Usuario {
 		if (Nombre_Usuario == null) {
 			if (other.Nombre_Usuario != null)
 				return false;
-		} else if (!Nombre_Usuario.equals(other.Nombre_Usuario))
+		} else if (!Nombre_Usuario.equals(other.Nombre_Usuario) || !Password_Usuario.equals(other.Password_Usuario))
 			return false;
+		System.out.println(this.getPassword_Usuario());
 		return true;
 	}
 

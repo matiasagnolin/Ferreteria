@@ -22,7 +22,6 @@ public class Comision implements Serializable{
 	private String Descripcion;
 	private int minimo;
 	private int maximo;
-	@Column(name="porcentaje")
 	private double Porcentaje;
 	private double valor;
 	private String create_date;

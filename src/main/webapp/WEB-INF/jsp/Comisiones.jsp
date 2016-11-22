@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>COMISIONES POR VENDEDOR</title>
-<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/static/Style.css" media="screen" />
+
 
 	<!-- Jquery -->
 	
@@ -39,6 +39,29 @@
 	  </div>
 	</nav>
 	<h1>VENDEDORES</h1>
+	  <div class="container grid">
+		<div class="row grid-header">
+			<div class="col-sm-3">Descripcion</div>
+			<div class="col-sm-1">minimo</div>
+			<div class="col-sm-1">maximo</div>
+			<div class="col-sm-2">Porcentaje</div>
+			<div class="col-sm-2">valor</div>
+			<div class="col-sm-2">close_date</div>
+			<div class="col-sm-1">tipo</div>
+		</div>
+		<c:forEach items="${Comision}" var="item">
+		<div class="row">
+			<div class="col-sm-3" id="Id">${item.getDescripcion()}</div>
+			<div class="col-sm-1">${item.getMinimo()}</div>
+			<div class="col-sm-1">${item.getMaximo()}</div>
+			<div class="col-sm-2">${item.getPorcentaje()}</div>
+			<div class="col-sm-2">${item.getValor()}</div>
+			<div class="col-sm-2">${item.getClose_date()}</div>
+			<div class="col-sm-1">${item.getTipo()}</div>
+			</div>			
+			</c:forEach>
+		</div>
+		</br>
   <div class="container grid">
 		<div class="row grid-header">
 			<div class="col-sm-2">Producto</div>

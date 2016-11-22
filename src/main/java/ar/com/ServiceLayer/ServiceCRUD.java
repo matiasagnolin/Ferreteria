@@ -18,4 +18,6 @@ public interface ServiceCRUD {
 	public List<Object> GetAllByField(Request req, String field);
 
 	public int getDiffFecha(String Fecha);
+	
+	public boolean exists(Request obj);
 }

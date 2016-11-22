@@ -28,7 +28,7 @@
 		}
 	</style>
 </head>
-<body ng-app="app">
+<body ng-app="app" style="padding-top:0px">
 	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
@@ -65,7 +65,7 @@
 			</c:forEach>
 		</div>
 	<input type="button" value="Calcular Comisiones" class="btn btn-success" Style="margin-left:80px" onClick="window.location = ${pageContext.request.contextPath}/Calcular">
-	<p> ${pageContext.request.contextPath}/Calcular</p>
+	
 </body>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 	

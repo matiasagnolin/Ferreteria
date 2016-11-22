@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 
+
 import ar.com.repository.Repository;
 
 
@@ -63,8 +64,14 @@ public class DataLayerImple<T>implements Repository {
 
 	@Override
 	public List<Object> ExecuteQuery(String query) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
+	@Override
+	public void delete(Object obj) {
+		hibernateTemplate.delete(obj);
+		
+	}
+	
 }

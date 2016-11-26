@@ -7,7 +7,7 @@
 <head>
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/static/Style.css" media="screen" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Comisiones</title>
 </head>
 <body>
 <div class="container">
@@ -54,31 +54,43 @@
 										<div class="row">
 											<div class="col-lg-12">
 												<div class="text-center">
-													<a href="http://phpoll.com/recover" tabindex="5" class="forgot-password">Forgot Password?</a>
+													<c:if   test="${command.getError()!=''}">
+													   <p style="color:red"><c:out value="${command.getError()}"/></p>
+													</c:if>
 												</div>
 											</div>
 										</div>
 									</div>
 								</form:form>
+								
 								<form:form  id="register-form" action="${pageContext.request.contextPath}/register" method="post"  modelAttribute="command" style="display: none;">
 									<div class="form-group">
-									<form:label path="Nombre_Usuario">User Name</form:label> 
+									
 										<form:input path="Nombre_Usuario" type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value=""  />
 									</div>
 									<div class="form-group">
-									<form:label path="Password_Usuario">Password</form:label> 
+									 
 										<form:input path="Password_Usuario" type="password" name="password" id="password" tabindex="1" class="form-control" placeholder="password" value="" />
 									</div>
 									<div class="form-group">
-									<form:label path="Nombre_Persona">Nombre</form:label> 
+									 
 										<form:input path="Nombre_Persona" type="text" name="Nombre_Persona" id="Nombre_Persona" tabindex="2" class="form-control" placeholder="Name" />
 									</div>
 									<div class="form-group">
-									<form:label path="Apellido_Persona">Apellido</form:label> 
-										<form:input path="Apellido_Persona" type="text" name="Apellido_Persona" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password"/>
+									
+										<form:input path="Apellido_Persona" type="text" name="Apellido_Persona" id="confirm-password" tabindex="2" class="form-control" placeholder="Last Name"/>
 									</div>
-									<form:label path="DNI_Persona">DNI_Persona</form:label> 
-										<form:input path="DNI_Persona"  type="text" name="DNI_Persona" id="DNI_Persona" tabindex="2" class="form-control" placeholder="Confirm Password"/>
+									<div class="form-group">
+									 
+										<form:input path="DNI_Persona"  type="text" name="DNI_Persona" id="DNI_Persona" tabindex="2" class="form-control" placeholder="DNI"/>
+									</div>
+									<div class="form-group">
+									<label>Seleccione el tipo de usuario que quiere regitrar</label></br>
+									<form:select path="Role_Usuario" class="selectpicker" data-style="btn-primary" >
+									  <c:forEach var="item" items="${command.getListaTipos()}">
+									<form:option  path="Role_Usuario" value="${item.getTipo()}"><c:out value="${item.getDescripcion()}" /></form:option>
+									</c:forEach>
+										</form:select>
 									</div>
 									<div class="form-group">
 										<div class="row">
@@ -92,10 +104,13 @@
 						</div>
 					</div>
 				</div>
+				</div>
+				</div>
+				</div>
 
 </body>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="<%= request.getContextPath() %>/static/JavaScript.js"></script>
+<script type="text/javascript" src="<%= request.getContextPath() %>/static/javascript.js"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 

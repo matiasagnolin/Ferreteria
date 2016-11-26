@@ -1,6 +1,7 @@
 package ar.com.Controller;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import javax.swing.text.View;
 
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -23,17 +25,19 @@ import ar.com.Request.data.Request;
 import ar.com.ServiceLayer.ServiceBussines;
 import ar.com.ServiceLayer.ServiceCRUD;
 import ar.com.model.domain.Cliente;
-import ar.com.model.domain.Cliente_Usuario;
 import ar.com.model.domain.Comision;
 import ar.com.model.domain.Persona;
 import ar.com.model.domain.Usuario;
 import ar.com.model.domain.Vendedor;
 import ar.com.model.domain.Venta;
+import ar.com.mvc.objects.Cliente_Usuario;
 
 
 
+@SuppressWarnings({ "unchecked", "unchecked" })
 @Controller
-public class HomeController {
+@Scope("session")
+public class HomeController  {
 	
 
 	@Autowired
@@ -42,96 +46,36 @@ public class HomeController {
 	private ServiceBussines BussinesService;
 	@Autowired
 	private Request req ;
-	@Autowired
-	private HttpServletRequest context;
+	
+	
+//	@Autowired
+	private Usuario user;
 
 	
 	
-	@RequestMapping(value="/")
-	public ModelAndView Index(Model model){
-		return new ModelAndView("Login", "command", new Usuario());
-	}
-	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String Login(@ModelAttribute("Usuario") Usuario user, ModelMap model) throws Exception{
-		req.setObject(user);
-		req.setId(user.getNombre_Usuario());
-		Usuario user2=(Usuario)dataService.ReadOne(req);
-		if(user.equals(user2)){
-		return "redirect:/Ventas";}
-		else { return "redirect:/";}
-	}
-	@RequestMapping(value="/register", method=RequestMethod.POST)
-	public String Register(@ModelAttribute("Cliente_Usuario") Cliente_Usuario cliente_usuario, ModelMap model) throws Exception
-	{
-		Cliente cliente = new Cliente();
-		Usuario user = new Usuario();
-		cliente.setDNI_Persona(cliente_usuario.getDNI_Persona());
-		cliente.setApellido_Persona(cliente_usuario.getApellido_Persona());
-		cliente.setNombre_Persona(cliente_usuario.getNombre_Persona());
-		user.setNombre_Usuario(cliente_usuario.getNombre_Usuario());
-		user.setPassword_Usuario(cliente_usuario.getPassword_Usuario());
-		user.setPersona(cliente);
-		cliente.setUsuario(user);
-
-		req.setObject(cliente);
-		req.setId(cliente.getDNI_Persona());
-		if(dataService.exists(req))
-		{
-			req.setObject(cliente.getUsuario());
-			req.setId(cliente.getUsuario().getNombre_Usuario());
-			if(dataService.exists(req))
-				return "redirect:/";
-			else{ dataService.Save(req); return "redirect:/Ventas";}
-		}
-		else
-		{
-			req.setObject(cliente);
-			dataService.Save(req);
-			req.setObject(user);
-			dataService.Save(req);
-			return "redirect:/Ventas";
-		}
 		
-	}
-	@RequestMapping(value="/Ventas")
-	public String Ventas(Model model){
+	@RequestMapping(value="/Home",method=RequestMethod.GET)
+	public ModelAndView Ventas(HttpServletRequest request) throws Exception{
+		
+		this.user=(Usuario)request.getSession().getAttribute("usuario");
+		
 		req.setObject(new Venta());
-		List<Venta> ventas = (List<Venta>)(Object)dataService.ReadAll(req);
-		model.addAttribute("ventas", ventas);
-		return "home";
+		
+		List<Object> objects = dataService.ReadAll(req);
+		
+		List<Venta> ventas=(List<Venta>)(Object)BussinesService.Proxy(user,objects,Venta.class.getTypeName());
+		
+		return new ModelAndView("home","ventas", ventas);
 	}
-	@RequestMapping(value="/Ventas/{id}", method=RequestMethod.GET)
-	public ModelAndView  DetalleVenta(@PathVariable String id) throws Exception{
+	
+	@RequestMapping(value="Ventas/{id}", method=RequestMethod.GET)
+	public ModelAndView  DetalleVenta(@PathVariable String id) throws Exception
+	{
 		req.setObject(new Venta());
 		req.setId(Integer.parseInt(id));
 		Venta venta = (Venta)dataService.ReadOne(req);
 		return new ModelAndView("DetalleVenta","venta", venta);
 	}
-	@RequestMapping(value="/Calcular")
-	public ModelAndView  Calcular() throws Exception{
-		Venta vt=new Venta();
-		Vendedor vendedor2 = new Vendedor();
-		Comision com = new Comision();
-		req.setObject(vt);
-		BussinesService.setLsvt((List<Venta>)(Object)dataService.ReadAll(req));
-		req.setObject(vendedor2);
-		List <Vendedor> listvendedor=(List<Vendedor>)(Object)dataService.ReadAll(req);
-		req.setObject(com);
-		List<Comision> cm = (List<Comision>)(Object)dataService.ReadAll(req);
-		BussinesService.setLstcm(cm);
-		for(Vendedor vd : listvendedor)
-		{
-			BussinesService.setCantidadDeVentas(vd);
-			BussinesService.setComisionPorProductoVendido(vd);
-			BussinesService.setComisionPorCantidadVentas(vd);
-			BussinesService.setCantidadCampania(vd);
-		}
-		BussinesService.setComisionPrimerVendedor(listvendedor);
-		BussinesService.Ordenar(listvendedor);
-		ModelAndView model = new ModelAndView();
-		model.addObject("Vendedores",listvendedor);
-		model.addObject("Comision", cm);
-		model.setViewName("Comisiones");
-		return model;
-	}
+	
+	
 }

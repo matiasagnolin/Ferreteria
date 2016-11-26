@@ -1,5 +1,6 @@
 package ar.com.model.domain;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -10,7 +11,7 @@ import javax.persistence.Entity;
 import org.springframework.data.annotation.Id;
 
 @Entity
-public class Calendario {
+public class Calendario  implements Serializable{
 	@javax.persistence.Id
 	private int id;
 	private String nombre_mes;

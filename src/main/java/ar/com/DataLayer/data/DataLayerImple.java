@@ -14,8 +14,6 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-
-
 import ar.com.repository.Repository;
 
 
@@ -45,33 +43,41 @@ public class DataLayerImple<T>implements Repository {
 		Object obj=null;
 		try{
 		obj=hibernateTemplate.get(t, id);}
-		catch(Exception e){System.out.println("aa");}
+		catch(Exception e){throw new Exception();}
 		if(obj == null) throw new Exception();
-		else{return obj;}
+		return obj;
 	}
 
 	@Transactional(propagation=Propagation.REQUIRED)
 	public void update(Object t) {
 		hibernateTemplate.update(t);
 	}
+	
 	@Transactional(propagation=Propagation.REQUIRED)
-	public List<Object> GetAllByField(Object t,String field, Serializable id) {
+	public List<Object> ExecuteQuery(Object t,String field, Serializable id) {
 		String query= "from " + t.getClass() + "where " + field +"= ?";
 		Serializable[] param = {id};
 		List<Object> obj= hibernateTemplate.find(query,param);
 		return obj;
 	}
 
-	@Override
-	public List<Object> ExecuteQuery(String query) {
-		
-		return null;
-	}
 
 	@Override
 	public void delete(Object obj) {
 		hibernateTemplate.delete(obj);
 		
+	}
+
+	@Override
+	public List<Object> ExecuteQuery(String query) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Object> GetAllByField(Object t, String field, Serializable id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

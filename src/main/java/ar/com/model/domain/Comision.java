@@ -152,6 +152,13 @@ public class Comision implements Serializable{
 	public void setDescripcion(String descripcion) {
 		Descripcion = descripcion;
 	}
+	@Override
+	public String toString() {
+		return "Comision [Descripcion=" + Descripcion + ", minimo=" + minimo
+				+ ", maximo=" + maximo + ", Porcentaje=" + Porcentaje
+				+ ", valor=" + valor + ", create_date=" + create_date
+				+ ", close_date=" + close_date + ", tipo=" + tipo + "]";
+	}
 	
 	
 

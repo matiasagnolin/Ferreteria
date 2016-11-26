@@ -20,6 +20,8 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 
 
+
+
 import ar.com.DataLayer.data.DataLayerImple;
 import ar.com.DataLayer.data.DataLayerImple;
 import ar.com.Request.data.Request;
@@ -33,6 +35,8 @@ import ar.com.model.domain.Comision;
 import ar.com.model.domain.DetalleVenta;
 import ar.com.model.domain.Persona;
 import ar.com.model.domain.Producto;
+import ar.com.model.domain.RRHH;
+import ar.com.model.domain.Tipos;
 import ar.com.model.domain.Usuario;
 import ar.com.model.domain.Vendedor;
 import ar.com.model.domain.Venta;
@@ -107,7 +111,7 @@ public class AppConfig<T> {
 		AnnotationSessionFactoryBean sessionFactoryBean = new AnnotationSessionFactoryBean();
 		
 		Class[] annotatedClasses = {Persona.class,Usuario.class,Producto.class,Venta.class,DetalleVenta.class,Comision.class,
-				Vendedor.class,Cliente.class,Calendario.class};
+				Vendedor.class,Cliente.class,Calendario.class,RRHH.class,Tipos.class};
 		sessionFactoryBean.setAnnotatedClasses(annotatedClasses); 
 		
 		Properties hibernateProperties = new Properties();

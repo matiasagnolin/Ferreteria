@@ -1,4 +1,9 @@
-package ar.com.model.domain;
+package ar.com.mvc.objects;
+
+import java.util.List;
+
+import ar.com.model.domain.Persona;
+import ar.com.model.domain.Tipos;
 
 
 
@@ -25,6 +30,36 @@ public class Cliente_Usuario {
 	private String Password_Usuario;
 	
 	private int Role_Usuario;
+	
+	private List<Tipos> ListaTipos;
+	
+	
+	
+	public Cliente_Usuario(List<Object> readAll) {
+		this.ListaTipos=(List<Tipos>)(Object)readAll;
+	}
+	public Cliente_Usuario() {
+	
+	}
+	
+
+	public List<Tipos> getListaTipos() {
+		return ListaTipos;
+	}
+
+	public void setListaTipos(List<Tipos> listaTipos) {
+		ListaTipos = listaTipos;
+	}
+
+	private String error;
+
+	public String getError() {
+		return error;
+	}
+
+	public void setError(String error) {
+		this.error = error;
+	}
 
 	public String getDNI_Persona() {
 		return DNI_Persona;

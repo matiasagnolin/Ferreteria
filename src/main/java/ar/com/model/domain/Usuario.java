@@ -6,10 +6,16 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 @Entity
 @Table(name="usuarios")
+@Component
+@Scope("session")
 public class Usuario {
 	@Id
 	private String Nombre_Usuario;
@@ -18,19 +24,20 @@ public class Usuario {
 	private Persona Persona;
 	@Column(name="Password_Usuario")
 	private String Password_Usuario;
-	@Column(name="role_Usuario")
-	private int Role_Usuario;
+	
+	@OneToOne(cascade= CascadeType.ALL)
+	private Tipos Role_Usuario;
 	
 	
 	public Usuario(){}
 
-	public Usuario(String nombre_Usuario, String password_Usuario, int role_Usuario, Persona DNI) {
+	public Usuario(String nombre_Usuario, String password_Usuario, Tipos role_Usuario, Persona DNI) {
 		this.Nombre_Usuario = nombre_Usuario;
 		this.Password_Usuario = password_Usuario;
 		this.Role_Usuario = role_Usuario;
 		this.Persona = DNI;
 	}
-	public Usuario(String nombre_Usuario, String password_Usuario, int role_Usuario) {
+	public Usuario(String nombre_Usuario, String password_Usuario, Tipos role_Usuario) {
 		this.Nombre_Usuario = nombre_Usuario;
 		this.Password_Usuario = password_Usuario;
 		this.Role_Usuario = role_Usuario;
@@ -89,13 +96,17 @@ public class Usuario {
 		Persona = persona;
 	}
 
-	public void setRole_Usuario(int role_Usuario) {
-		Role_Usuario = role_Usuario;
-	}
-
 	@Override
 	public String toString() {
 		return  Nombre_Usuario ;
+	}
+
+	public Tipos getRole_Usuario() {
+		return Role_Usuario;
+	}
+
+	public void setRole_Usuario(Tipos role_Usuario) {
+		Role_Usuario = role_Usuario;
 	}
 
 

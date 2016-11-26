@@ -60,12 +60,16 @@
 				<div class="col-sm-2">${sum}</div>
 				<div class="col-sm-2">${item.vendedor}</div>	
 				<div class="col-sm-2">${item.getFecha()}</div>
-			<div class="col-sm-2"><a id="" href="${pageContext.request.contextPath}/${item.ID_Venta}">Ver Detalle</a></div>
+			<div class="col-sm-2"><a id="" href="${pageContext.request.contextPath}/Ventas/${item.ID_Venta}">Ver Detalle</a></div>
 			</div>			
 			</c:forEach>
 		</div>
-	<input type="button" value="Calcular Comisiones" class="btn btn-success" Style="margin-left:80px" onClick="window.location = ${pageContext.request.contextPath}/Calcular">
-	
+		<form  id="Modificar" action="${pageContext.request.contextPath}/Comisiones" >
+	<input type="submit" value="Modificar Comisiones" class="btn btn-success" Style="margin-left:80px">
+	</form>
+	<form  id="Calcular" action="${pageContext.request.contextPath}/Calcular" >
+	<input type="submit" value="Calcular Comisiones" class="btn btn-success" Style="margin-left:80px; margin-top:30px">
+	</form>
 </body>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 	
@@ -78,11 +82,6 @@
 	 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js"></script>
  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.js"></script>
-<script type="text/javascript"> var pageContext = '<%= request.getContextPath() %>';</script>
-<script type="text/javascript"> console.log('<%= request.getContextPath() %>');</script>
-<script type="text/javascript" src="<%= request.getContextPath() %>/static/app.js"></script>
-<script type="text/javascript" src="<%= request.getContextPath() %>/static/PepeController.js"></script>
-<script type="text/javascript" src="<%= request.getContextPath() %>/static/FormController.js"></script>
 
 
 </html>

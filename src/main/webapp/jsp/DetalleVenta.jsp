@@ -29,7 +29,7 @@
 	</style>
 </head>
 
-<body ng-app="app">
+<body ng-app="app" style="padding-top:0px">
 	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
@@ -58,7 +58,9 @@
 			</div>			
 			</c:forEach>
 		</div>
-		<input type="button" value="Ventas" class="btn btn-success" Style="margin-left:80px" onClick="window.location = ${pageContext.request.contextPath}/"> 
+		<form id="login-form" action="${pageContext.request.contextPath}/Home"  >
+		<input type="submit" value="Ventas" class="btn btn-success" Style="margin-left:80px" >
+		</form> 
 </body>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">

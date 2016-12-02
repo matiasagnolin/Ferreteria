@@ -55,27 +55,28 @@ public class ComisionController implements Serializable{
 		BussinesService.setLsvt((List<Venta>)(Object)dataService.ReadAll(req));
 		
 		req.setObject(vendedor2);
-		List <Vendedor> listvendedor=(List<Vendedor>)(Object)BussinesService.Proxy(user , dataService.ReadAll(req), Vendedor.class.getName());
-				//(List<Vendedor>)(Object)dataService.ReadAll(req);
+		List <Object> listvendedor=dataService.ReadAll(req);
+
 		
 		req.setObject(com);
 		List<Comision> cm = (List<Comision>)(Object)dataService.ReadAll(req);
 		
 		BussinesService.setLstcm(cm);
 		
-		for(Vendedor vd : listvendedor)
+		for(Object vd : listvendedor)
 		{
-			BussinesService.setCantidadDeVentas(vd);
-			BussinesService.setComisionPorProductoVendido(vd);
-			BussinesService.setComisionPorCantidadVentas(vd);
-			BussinesService.setCantidadCampania(vd);
+			BussinesService.setCantidadDeVentas((Vendedor)vd);
+			BussinesService.setComisionPorProductoVendido((Vendedor)vd);
+			BussinesService.setComisionPorCantidadVentas((Vendedor)vd);
+			BussinesService.setCantidadCampania((Vendedor)vd);
 		}
 		
-		BussinesService.setComisionPrimerVendedor(listvendedor);
-		BussinesService.Ordenar(listvendedor);
-		
+		BussinesService.setComisionPrimerVendedor((List<Vendedor>)(Object)listvendedor);
+		BussinesService.Ordenar((List<Vendedor>)(Object)listvendedor);
+
+		listvendedor=BussinesService.Proxy(user ,listvendedor, Vendedor.class.getName());
 		ModelAndView model = new ModelAndView();
-		model.addObject("Vendedores",listvendedor);
+		model.addObject("Vendedores",(List<Vendedor>)(Object)listvendedor);
 		model.addObject("Comision", cm);
 		model.setViewName("Calcular_Comisiones");
 		

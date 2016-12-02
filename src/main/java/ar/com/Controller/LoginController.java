@@ -119,26 +119,26 @@ public class LoginController implements Serializable{
 			req.setId(cliente.getUsuario().getNombre_Usuario());
 			
 			if(dataService.exists(req))
-			{System.out.println("LLEGO2");
+			{
 				cliente_usuario.setError("ERROR: USUARIO YA EXISTENTE");
 				cliente_usuario.setListaTipos((List<Tipos>)(Object)dataService.ReadAll(new Request(new Tipos())));
 				return new ModelAndView("Login", "command",  cliente_usuario);
 			}
 			else
-			{System.out.println("LLEGO3"); 
+			{
 				dataService.Save(req); 
 				return new ModelAndView("redirect:/Home");//EN CASO DE QUE EXISTA REGISTRO EN PERSONA Y NO EN USUARIO (NO VA A PASAR NUNCA)
 			}
 		}
 		else
 		{
-			System.out.println("CLIENTE GUARDANDO");
+			
 			req.setId(cliente.getDNI_Persona());
 			req.setObject(cliente);
 			
 			dataService.Save(req);
 			
-			System.out.println("USUARIO GURDANDO");
+			
 			req.setObject(user2);
 			req.setId(user2.getNombre_Usuario());
 			

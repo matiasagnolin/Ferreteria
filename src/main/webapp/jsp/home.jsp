@@ -70,6 +70,9 @@
 	<form  id="Calcular" action="${pageContext.request.contextPath}/Calcular" >
 	<input type="submit" value="Calcular Comisiones" class="btn btn-success" Style="margin-left:80px; margin-top:30px">
 	</form>
+	<form  id="AgregarVenta" action="${pageContext.request.contextPath}/AgregarVenta/Controller" >
+	<input type="submit" value="Agregar Venta" class="btn btn-success" Style="margin-left:80px; margin-top:30px">
+	</form>
 </body>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 	

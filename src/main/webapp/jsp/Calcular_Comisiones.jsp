@@ -6,11 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>COMISIONES POR VENDEDOR</title>
-
-
-	<!-- Jquery -->
-	
+<title>COMISIONES POR VENDEDOR</title>	
 	<style type="text/css">
 		.grid{
 			margin-bottom: 20px;
